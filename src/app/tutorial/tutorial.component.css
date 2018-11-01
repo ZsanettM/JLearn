@@ -15,7 +15,6 @@ h3 {
 }
 .description {
   /*background-color: yellowgreen;*/
-  height: 100vh;
   border: 10px solid transparent;
   padding: 15px;
   border-width: 0 35px 0 0;
