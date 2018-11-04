@@ -2,11 +2,31 @@
   <a class="navbar-brand" href="/">
     <img src="/assets/jl.png" width="60" height="40" alt="">
   </a>
+
   <div class="navbar-expand mr-auto">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="home" routerLinkActive="active">Home</a>
-      <a class="nav-item nav-link" routerLink="tutorials" routerLinkActive="active">Tutorials</a>
-      <a class="nav-item nav-link" href="#">Brain Teasers</a>
-    </div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-item nav-link" routerLink="home" routerLinkActive="active">
+          <img src="/assets/liz.png" width="40" height="40" alt="">Home</a></li>
+        <li class="btn-group">
+          <a class="nav-item nav-link" routerLink="tutorials" routerLinkActive="active" role="button">
+            <img src="/assets/tutorial.png" width="40" height="40" alt="">Tutorials
+          </a>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdown" role="button"></a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="loops" routerLinkActive="active">Loops</a>
+            <a class="dropdown-item" href="#">Arrays</a>
+          </div>
+        </li>
+        <li class="nav-item">
+        <a class="nav-item nav-link" href="#">
+          <img src="/assets/brainteasers.png" width="40" height="40" alt="">Brain Teasers</a>
+        </li>
+        
+       
+        
+        
+      </ul>
   </div>
+
 </nav>

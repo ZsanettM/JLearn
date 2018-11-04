@@ -1,145 +1,71 @@
-<div id="content">
-  <p>
-    Loops allow a programmer to execute the same block of code repeatedly.
-  </p>
-  <p>
-    The <span class="highlight">while loop</span>  is really the only necessary repetition construct. The for loop, coming up, can be duplicated using a while loop, and with more control. A simple negation can perform the same behavior as an until loop.
-  </p>
-  <p>
-    The syntax is as follows:
-  </p>
-  <pre><code>
-  {{
-"
-              while ( ''condition'' ) {
-              //body
-              }"
-  }}
-</code></pre>
-  <p>
-    Again, the curly braces surrounding the body of the while loop indicate that multiple statements will be executed as part of this loop. If the actual code looked something like this:
-  </p>
-  <pre><code>
-  {{
-"
-              while ( x == 4 )
-              y += x;
-              x += 1;"
-  }}
-</code></pre>
-  <p>means</p>
-  <pre><code>
-  {{
-"
-              while ( x == 4 ) {
-              y += x;
-              }
-              x += 1;"
-  }}
-</code></pre>
-  <p>
-    There would be a problem. According to what was written, even though the second line after the while was indented, only the first line corresponds to the while loop. This is a huge problem because the variable involved in the condition (x) does not change, so it will always evaluate to true, making this an infinite loop. This could be alleviated by containing all statements intended to be a part of the loop body in {{"{ }"}}.
-  </p>
-  <pre><code>
-              {{
-            "while ( x == 4 ) {
-              y += x;
-              x += 1;
-              }"
-              }}
-</code></pre>
-  <p>
-    The <span class="highlight">do...while loop</span> is nearly identical to the while loop, but instead of checking the conditional statement before the loop starts, the do...while loop checks the conditional statement after the first run, then continuing onto another iteration.
-  </p>
-  <p>
-    The syntax is as follows:
-  </p>
-  <pre><code>
-  {{
-"
-  do {
-  //body
-  } while (''condition'');"
-  }}
-</code></pre>
-  <p>
-    As you can see, it will run the loop at least once before checking the conditional.
-  </p>
-  <p>
-    The do...while loop is still haunted by infinite loops, so exercise the same caution with the do...while loop as you would with the while loop. Its usefulness is much more limited than the while loop, so use this only when necessary.
-  </p>
-  <p>
-    The <span class="highlight">for loop</span> is a loop that lets a programmer control exactly how many times a loop will iterate.
-  </p>
-  <p>
-    The syntax is as follows:
-  </p>
-  <pre><code>
-  {{
-"
-  for (expression for initialization ; expression for testing ; expression for updating) {
-  //body
-  }"
-  }}
-</code></pre>
-  <p>
-    Here is an example of how the for loop works:
-  </p>
-  <pre><code>
-  {{
-"
-  for ( int i = 0; i < 10; ++i ) {
-  std::cout << i << std::endl;
-  }"
-  }}
-</code></pre>
-  <p>
-    The code above and below are more or less equivalent.
-  </p>
-  <pre><code>
-  {{
-"
-  int i = 0;
-  while ( i < 10 ) {
-  std::cout << i << std::endl;
-  ++i;
-  }"
-  }}
-</code></pre>
-  <p>
-    What does this loop do? Prior to the first iteration, it sets the value of i to 0. Next, it tests (like a normal while loop) if i is less than 10. If the statement returns true, the body of the loop is run and the program will print the value returned by the simple arithmetic statement i+1 and move the terminal cursor down to the next line. After the loop is finished, i is incremented (by 1), as specified in the update statement, and the conditional is tested again.
-  </p>
-  <p>
-    So, this loop will run a total of 10 times, printing the "i+1" each time. You've taught your program to count!
-  </p>
-  <p>
-    The variable used in for loops is generally an integer variable named i, j, or k, and is often initialized prior to the beginning of the for loop. Another option is to initialize the variable at the same time that you declare the variable's initial state:
-  </p>
-  <pre><code>
-  {{
-"
-  for (int i = 0; i < 10; i++) {
-  std::cout << i+1 << std::endl;
-  }"
-  }}
-</code></pre>
-  <p>
-    One common programming mistake is to create an <span class="highlight">infinite loop</span>. An infinite loop refers to a loop, which under certain valid (or at least plausible) input, will never exit.
-  </p>
-  <p>
-    Beginning programmers should be careful to examine all the possible inputs into a loop to ensure that for each such set of inputs, there is an exit condition that will eventually be reached. In addition to preventing the program from hanging (i.e. never finishing), understanding all potential inputs and exit conditions demonstrates a solid understanding of the algorithm being written. Academic studies of programming languages often test students' ability to identify infinite loops for the very reason that doing so often requires a solid understanding of the underlying code.
-  </p>
-  <p>
-    Compilers, debuggers, and other programming tools can only help the programmer so far in detecting infinite loops. In the fully general case, it is not possible to automatically detect an infinite loop. This is known as the halting problem. While the halting problem is not solvable in the fully general case, it is possible to determine whether a loop will halt for some specific cases.
-  </p>
-  <p>Example of Infinite loop</p>
-  <pre><code>
-  {{
-"
-  while(1) {
-  // printf('Infinite Loop');
-  std::cout << 'Infinite loop';
-  }"
-  }}
-</code></pre>
+<div class="row container-fluid">
+  <div class="col-md-6">
+    <div class="container description padding-0">
+      <h3> Loops </h3>
+
+      <p>Just imagine you needed a program to do something 20 times. What would you do? You could copy and paste the code 20 times, and have a virtually unreadable program. Or, you could tell the computer to repeat a bit of code between point A and point B, until the time comes that you need it to stop. Such a thing is called a loop. </p>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              While Loops
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>The following are examples of a type of loop, called the while loop:</p>
+
+          <strong>Code Example 1 – The while loop</strong>
+          <pre><code>{{"
+          a = 0
+          while a < 10:
+          a = a + 1  #alternatively a += 1
+          print(a)
+          "}}</code></pre>
+
+          <p>How does this program work? Let's go through it in English (this is called <strong><em> pseudocode</em></strong>):</p>
+
+          <strong>Code Example 2 – Plain-language while loop</strong>
+          <pre><code>{{"
+          'a' now equals 0
+          As long as 'a' is less than 10, do the following:
+          Make 'a' one larger than what it already is.
+          print on-screen what 'a' is now worth.
+          "}}</code></pre>
+
+          <strong>Code Example 3 – while loop form</strong>
+          <pre><code>{{"
+          while {condition that the loop continues}:
+          {what to do in the loop}
+          {have it indented, usually four spaces}
+          {the code here is not looped}
+          {because it isn't indented}
+          "}}</code></pre>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              For Loops
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Another way to iterate through things is by using for loops:</p>
+
+          <strong>Code Example 1 - The for loop</strong>
+          <pre><code>{{"
+          word = 'hippopotamus'
+          for letter in word:
+          print(letter)
+          "}}</code></pre>
+        </mat-expansion-panel>
+
+
+      </mat-accordion>
+    </div>
+  </div>
+  <div class="col-md-6 padding-0">
+    <iframe src="http://localhost:8888/notebooks/PythonLoops.ipynb"></iframe>
+  </div>
 </div>

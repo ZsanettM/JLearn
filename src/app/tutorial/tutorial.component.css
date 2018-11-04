@@ -1,31 +1,21 @@
-iframe {
-  height: 100vh;
-  width: 100%;
-  border: none;
-}
 .padding-0 {
   padding-right: 0;
   padding-left: 0;
 }
+
 .list-group-item {
   background-color: #77b255;
 }
+
 h3 {
   text-align: center;
 }
-.description {
-  /*background-color: yellowgreen;*/
-  border: 10px solid transparent;
-  padding: 15px;
-  border-width: 0 35px 0 0;
-  -webkit-border-image: url(../../assets/u2.png) 98 repeat; /* Safari 3.1-5 */
-  -o-border-image: url(../../assets/u2.png) 98 repeat;/* Opera 11-12.1 */
-  border-image: url(../../assets/u2.png) 98 repeat;
-}
+
 mat-expansion-panel-header {
   background-color: #00843b;
   border: 2px solid #e3b902;
 }
+
 mat-expansion-panel {
   background-color: white;
 }
