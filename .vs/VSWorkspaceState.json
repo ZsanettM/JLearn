@@ -3,9 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\loops",
     "\\src\\app\\navigation",
     "\\src\\app\\tutorial",
     "\\src\\assets"
   ],
+  "SelectedNode": "\\src\\assets\\jl.png",
   "PreviewInSolutionExplorer": false
 }

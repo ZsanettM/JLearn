@@ -1,0 +1,31 @@
+.dashed {
+    border-style: dashed;
+    margin: 10px;
+}
+
+.green {
+    background-color: green;
+    border-style: outset;
+    border-color: darkgrey;
+    text-shadow: 2px 1px darkgrey;
+    color: white;
+    margin: 10px;
+}
+
+.yellowgreen {
+    background-color: yellowgreen;
+    border-style: outset;
+    border-color: darkgrey;
+    margin: 10px;
+}
+
+.yellow {
+    background-color: hsl(73, 98%, 50%);
+    border-style: outset;
+    border-color: darkgrey;
+    margin: 10px;
+}
+
+h1, h2, h3, h4, h5 {
+    text-align: center;
+}
