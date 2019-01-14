@@ -4,7 +4,7 @@
 }
 
 .green {
-    background-color: green;
+    background-color: #00796B;
     border-style: outset;
     border-color: darkgrey;
     text-shadow: 2px 1px darkgrey;
@@ -13,7 +13,7 @@
 }
 
 .yellowgreen {
-    background-color: yellowgreen;
+    background-color: #DCE775;
     border-style: outset;
     border-color: darkgrey;
     margin: 10px;
@@ -32,4 +32,12 @@ h1, h2, h3, h4, h5 {
 
 .main {
     margin-left: 45px;
+}
+
+.secondRect{
+    padding: 5px;
+    /*background-image: url("../../assets/lizardDrawing.png");
+    width: inherit;
+    background-size: cover;
+    background-repeat: no-repeat;*/
 }

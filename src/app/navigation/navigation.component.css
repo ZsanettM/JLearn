@@ -1,4 +1,21 @@
 .navbar {
   width: 100%
 }
+.dropdown-toggle{
+  align-self: center;
+}
 
+.navbar-brand{
+  border-style: dashed;
+  border-width: thick;
+  border-bottom-color: black;
+  background-color: #eeeeee;
+}
+
+.modal-header, .modal-footer{
+  background-color: #004D40;
+}
+
+.modal-title{
+  color: #e3b902;
+}

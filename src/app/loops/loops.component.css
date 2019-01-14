@@ -28,10 +28,15 @@ h3 {
 }
 
 mat-expansion-panel-header {
-  background-color: #00843b;
+  background-color: #26A69A;
   border: 2px solid #e3b902;
 }
 
 mat-expansion-panel {
   background-color: white;
+}
+
+pre{
+  background-color: #E6EE9C;
+  border-radius: 15px;
 }
