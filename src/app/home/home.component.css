@@ -1,6 +1,7 @@
 .dashed {
     border-style: dashed;
     margin: 10px;
+    padding: 5px;
 }
 
 .green {
@@ -31,11 +32,11 @@ h1, h2, h3, h4, h5 {
 }
 
 .main {
-    margin-left: 45px;
+    /*margin-left: 45px;*/
+    align-self: center;
 }
 
 .secondRect{
-    padding: 5px;
     /*background-image: url("../../assets/lizardDrawing.png");
     width: inherit;
     background-size: cover;
