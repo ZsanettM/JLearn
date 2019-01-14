@@ -31,14 +31,10 @@ h1, h2, h3, h4, h5 {
     text-align: center;
 }
 
+
 .main {
     /*margin-left: 45px;*/
     align-self: center;
-}
-
-.secondRect{
-    /*background-image: url("../../assets/lizardDrawing.png");
-    width: inherit;
-    background-size: cover;
-    background-repeat: no-repeat;*/
+    align-items: center;
+    margin: 0px;
 }
