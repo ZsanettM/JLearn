@@ -9,6 +9,9 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { HomeComponent } from './home/home.component';
 import { LoopsComponent } from './loops/loops.component';
+import { VariablesComponent } from './variables/variables.component';
+import { SimpleAppsComponent } from './simple-apps/simple-apps.component';
+import { FunctionsComponent } from './functions/functions.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { LoopsComponent } from './loops/loops.component';
     TutorialComponent,
     HomeComponent,
     LoopsComponent,
+    VariablesComponent,
+    SimpleAppsComponent,
+    FunctionsComponent,
   ],
   imports: [
     BrowserModule,
