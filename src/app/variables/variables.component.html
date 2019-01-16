@@ -1,3 +1,80 @@
-<p>
-  variables works!
-</p>
+<div class="row container-fluid">
+  <div class="col-md-6">
+    <div class="container description padding-0">
+      <h3>Variables, Strings</h3>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Editing in Notepad (or in other text editors)
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Writing programs in Python to a file is very easy. Python programs are simply text documents—you can open them up in Notepad (or another text editor), and have a look at them, just like that. </p>
+          <p class="instruction">So, go and open Notepad. Type the following: </p>
+          <strong>Code Example 1 – mary.py</strong>
+          <pre><code>
+            {{'#A simple program.
+            print("Mary had a little lamb,")
+            print("its fleece was white as snow;")
+            print("and everywhere that Mary went"),
+            print("her lamb was sure to go.")'}}
+          </code></pre>
+          <p>Keep this exactly the same, down to where the commas are placed. Save the file as mary.py—and make sure Notepad doesn't add .txt to the end of the filename (you will have to tell it to save as any file to avoid this). Turn off 'Hide known file extensions' in Windows Explorer, if it makes it easier. </p>
+
+          <p>You can run the program either in an IDE or from your command line program (e.g., cmd). </p><p class="instruction"> Open the prompt up, type cd path\to\your\file then type python mary.py. Your program will now execute in the command line. </p>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Variables
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Now let's start introducing variables. Variables store a value, that can be looked at or changed at a later time. Check out the examples with variable <em>v</em> in the notebook.</p>
+          <p>Note that if you just want to modify a variable's value with respect to itself, there are shortcuts. These are called augmented assignment operators: </p>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>
+                    Standard form 
+                  </th>
+                  <th>
+                    Augmented 
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>v = v + 5 </td>
+                  <td>v += 5 </td>
+                </tr>
+                <tr>
+                    <td>v = v - 5 </td>
+                    <td>v -= 5 </td>
+                </tr>
+                <tr>
+                    <td>v = v*5 </td>
+                    <td>v *= 5 </td>
+                </tr>
+                <tr>
+                    <td>v = v/5</td>
+                    <td>v /= 5 </td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+  <div class="col-md-6 padding-0">
+      <iframe src="http://localhost:8888/notebooks/Variables.ipynb"></iframe>
+    </div>
+</div>

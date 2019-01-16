@@ -113,6 +113,111 @@
         </mat-expansion-panel>
       </mat-accordion>
 
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Define Your Own Functions
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Well, it is all well and good that you can use other people's functions, but what if you want to write your own functions, to save time, and maybe use them in other programs? This is where the 'def' operator comes in. (An operator is just something that tells python what to do, e.g. the '+' operator tells python to add things, the 'if' operator tells python to do something if conditions are met.) </p>
+          <p>This is how the 'def' operator works: </p>
+          <strong>Code Example 8 - The def operator</strong>
+          <pre><code>{{"
+          def function_name(parameter_1, parameter_2):
+              {this is the code in the function}
+              {more code}
+              {more code}
+              return {value to return to the main program}
+          {this code isn't in the function}
+          {because it isn't indented}
+          #remember to put a colon ':'' at the end
+          #of the line that starts with 'def'
+          "}}</code></pre>
+
+          <p>function_name is the name of the function. You write the code that is in the function below that line, and have it indented. (We will worry about parameter_1 and parameter_2 later, for now imagine there is nothing between the parentheses. </p>
+          <p>Functions run completely independent of the main program. Remember when I said that when the computer comes to a function, it doesn't see the function, but a value, that the function returns? Here's the quote:
+
+          "To the computer, the variable 'a' doesn't look like 'a' - it looks like the value that is stored inside it. Functions are similar - to the main program (that is, the program that is running the function), they look like the value of what they give in return of running." </p>
+          <p>A function is like a miniature program that some parameters are given to - it then runs itself, and then returns a value. Your main program sees only the returned value. If that function flew to the moon and back, and then at the end had: </p>
+          
+          <strong>Code Example 9 - return</strong>
+          <pre><code>
+            {{"return 'Hello'"}}
+          </code></pre>
+          <p>then all your program would see is the string "hello", where the name of the function was. It would have no idea what else the program did. </p>
+          <p>Because it is a separate program, a function doesn't see any of the variables that are in your main program, and your main program doesn't see any of the variables that are in a function. For example, here is a function that prints the words "hello" onscreen, and then returns the number '1234' to the main program: </p>
+
+          <strong>Code Example 10 - using return</strong>
+          <pre><code>
+            {{"# Below is the function
+            def hello():
+                print ('hello')
+                return 1234
+            
+            # And here is the function being used
+            >>>hello()"}}
+          </code></pre>
+
+          <p class="instruction">Think about the last line of code above. What did it do? Type in the program (you can skip the comments), and see what it does.</p>
+          <!--Only show later
+          <p>So what happened? </p>
+          <p>when 'def hello()' was run, a function called 'hello' was created When the line 'hello()' was run, the function 'hello' was executed (The code inside it was run) The function 'hello' printed "hello" onscreen, then returned the number '1234' back to the main program The main program now sees the line as 'print 1234' and as a result, printed '1234' That accounts for everything that happened. remember, that the main program had NO IDEA that the words "hello" were printed onscreen. All it saw was '1234', and printed that onscreen. </p>-->
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Passing Parameters to Functions
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>There is one more thing we will cover in this (monstrously huge) lesson - passing parameters to a function. Think back to how we defined functions:</p>
+
+          <strong>Code Example 11 - Defining functions with parameters</strong>
+          <pre><code>
+            {{"
+            def function_name(parameter_1,parameter_2):
+              {this is the code in the function}
+              {more code}
+              {more code}
+              return {value (e.g. text or number) to return to the main program}
+            "}}
+          </code></pre>
+          <p>Where parameter_1 and parameter_2 are (between the parentheses), you put the names of variables that you want to put the parameters into. Put as many as you need, just have them separated by commas. When you run a function, the first value you put inside the parentheses would go into the variable where parameter_1 is. The second one (after the first comma) would go to the variable where parameter_2 is. This goes on for however many parameters there are in the function (from zero, to the sky) For example: </p>
+
+          <strong>Code Example 12 - how parameters work</strong>
+          <pre><code>
+            {{"
+            def funny_function(first_word, second_word, third_word):
+              print 'The word created is: ' + first_word + second_word + third_word
+              return first_word + second_word + third_word
+            "}}
+          </code></pre>
+          <p>When you run the function above, you would type in something like this: funny_function("meat", "eater", "man"). The first value (that is, "meat") would be put into the variable called first_word. The second value inside the brackets (that is, "eater") would be put into the variable called second_word, and so on. This is how values are passed from the main program to functions - inside the parentheses, after the function name. </p>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                The Final Calculator Program
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Think back to that calculator program. Did it look a bit messy to you? I think it did, so lets re-write it, with functions.
+
+          To design - First we will define all the functions we are going to use with the 'def' operator (still remember what an operator is ;) ). Then we will have the main program, with all that messy code replaced with nice, neat functions. This will make it so much easier to look at again in the future. </p>
+          <p class="instruction">Check out the implementation in the notebook on the right!</p>
+          <p>We defined all our functions at the top. This really isn't part of your main program - they are just lots of little programs, that you will call upon later. You could even re-use these in another program if you needed them, and didn't want to tell the computer how to add and subtract again. </p>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
     </div>
   </div>
 
