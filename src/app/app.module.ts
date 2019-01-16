@@ -12,6 +12,7 @@ import { LoopsComponent } from './loops/loops.component';
 import { VariablesComponent } from './variables/variables.component';
 import { SimpleAppsComponent } from './simple-apps/simple-apps.component';
 import { FunctionsComponent } from './functions/functions.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FunctionsComponent } from './functions/functions.component';
     VariablesComponent,
     SimpleAppsComponent,
     FunctionsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

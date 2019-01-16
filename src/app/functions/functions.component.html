@@ -1,3 +1,122 @@
-<p>
-  functions works!
-</p>
+<div class="row container-fluid">
+  <div class="col-md-6">
+    <div class="container description padding-0">
+      <h3>Functions</h3>
+
+      <p>What are functions? Well, in effect, functions are little self-contained programs that perform a specific task, which you can incorporate into your own, larger programs. After you have created a function, you can use it at any time, in any place. This saves you the time and effort of having to retell the computer what to do every time it does a common task, for example getting the user to type something in. </p>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Using a function
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Python has lots of pre-made functions. You can use these pre-made functions right now, simply by 'calling' them. 'Calling' a function involves you giving a function input, and it will return a value (like a variable would) as output. Don't understand? Here is the general form that calling a function takes: </p>
+
+          <strong>Code Example 1 - How to call a function</strong>
+          <pre><code>
+            {{"function_name(parameters)"}}
+          </code></pre>
+
+          <p>See? Easy. </p>
+
+          <p><em>function_name</em> identifies which function it is you want to use. For example, the function raw_input(this function has been renamed to input in Python 3), which will be the first function that we will use. Parameters are the values you pass to the function to tell it what it should do, and how to do it.. for example, if a function multiplies any given number by five, the stuff in parameters tells the function which number it should multiply by five. Put the number 70 into parameters, and the function will do 70×5.</p>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Parameters and Returned Values - Communicating with Functions
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Well, that's all well and good that the program can multiply a number by five, but what does it have to show for it? A warm fuzzy feeling? Your program needs to see the results of what happened, to see what 70 x 5 is, or to see if there is a problem somewhere (like you gave it a letter instead of a number). So how does a function show what it does?</p>
+
+          <p>Well, in effect, when a computer runs a function, it doesn't actually see the function name, but the result of what the function did. Variables do exactly the same thing - the computer doesn't see the variable name, it sees the value that the variable holds. Lets call this program that multiplies any number by five, multiply(). You put the number you want multiplied in the brackets. So if you typed this: </p>
+
+          <strong>Code Example 2 - Using a function</strong>
+          <pre><code>
+            {{"a = multiply(70)"}}
+          </code></pre>
+          <p>The computer would actually see this: </p>
+
+          <strong>Code Example 3 - What the computer sees</strong>
+          <pre><code>
+            {{"a = 350"}}
+          </code></pre>
+          <em>Note: multiply() isn't a real function, unless you create it. </em>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                A Calculator Program
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Let's write another program, one that will act as a calculator. This time it will do something more adventurous than what we have done before. There will be a menu that will ask you whether you want to multiply two numbers together, add two numbers together, divide one number by another, or subtract one number from another. The only problem is that the raw_input function returns what you type in as a string, whereas we want the number 1, not the letter 1 (and yes, in Python, there is a difference). </p>
+          <p>Luckily, somebody wrote the function input (eval(input()) in Python 3), which returns what you typed in to the main program - but crucially, as a number, not a letter. If you type an integer (a whole number), what comes out of input is an integer. And if you put that integer into a variable, the variable will be an integer-type variable, which means you can perform addition, subtraction and other mathematical operations on it. </p>
+          <p>Now, let's design this calculator properly. We want a menu that is returned to every time you finish adding, subtracting, etc. In other words, to loop (HINT!!!) while (BIG HINT!!!) you tell it the program should still run.
+
+          We want it to perform an option in the menu associated with the number you enter. That involves you typing in a number (a.k.a. input) and an if loop. </p>
+          <p>Let's write it out in understandable English first: </p>
+
+          <strong>Code Example 6 - human-language example</strong>
+          <pre><code>{{"
+              START PROGRAM
+              print opening message
+              
+              while we let the program run, do this:
+                  #Print what options you have
+                  print Option 1 - add
+                  print Option 2 - subtract
+                  print Option 3 - multiply
+                  print Option 4 - divide
+                  print Option 5 - quit program
+                  
+                  ask the person what option they want and look for an integer
+                  if it is option 1:
+                      ask for first number
+                      ask for second number
+                      add them together
+                      display the result on screen
+                  if it is option 2:
+                      ask for first number
+                      ask for second number
+                      subtract one from the other
+                      display the result on screen
+                  if it is option 3:
+                      ask for first number
+                      ask for second number
+                      multiply them
+                      display the result on screen
+                  if it is option 4:
+                      ask for first number
+                      ask for second number
+                      divide the first by the second
+                      display the result on screen
+                  if it is option 5:
+                      tell the loop to stop
+              Display a goodbye message on screen
+              END PROGRAM
+          "}}</code></pre>
+
+          <p class="instruction">Wow! That is an impressive program! Check out the implemented version in the notebook on the right. Play around with it - try all options, entering in integers (numbers without decimal points), and numbers with stuff after the decimal point (known in programming as a floating point). Try typing in text, and see how the program stops running (That can be dealt with, using error handling, which we can address later.) </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </div>
+  </div>
+
+  <div class="col-md-6 padding-0">
+      <iframe src="http://localhost:8888/notebooks/Functions.ipynb"></iframe>
+  </div>
+</div>
