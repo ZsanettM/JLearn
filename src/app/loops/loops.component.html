@@ -1,7 +1,7 @@
 <div class="row container-fluid">
   <div class="col-md-6">
     <div class="container description padding-0">
-      <h3> Loops </h3>
+      <h3> Loops, Conditionals </h3>
 
       <p>Just imagine you needed a program to do something 20 times. What would you do? You could copy and paste the code 20 times, and have a virtually unreadable program. Or, you could tell the computer to repeat a bit of code between point A and point B, until the time comes that you need it to stop. Such a thing is called a loop. </p>
 
@@ -60,9 +60,208 @@
           print(letter)
           "}}</code></pre>
         </mat-expansion-panel>
-
-
       </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Boolean Expressions
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>What do you type in the area marked {{"{"}}conditions that the loop continues{{"}"}}? The answer is a boolean expression. </p>
+          <p>What? A forgotten concept for the non-math people here. Never mind, boolean expression just means a question that can be answered with a TRUE or FALSE response. For example, if you wanted to say your age is the same as the person next to you, you would type: </p>
+
+          <p>My age == the age of the person next to me</p>
+
+          <p>And the statement would be TRUE. If you were younger than the person opposite, you'd say:</p>
+              
+          <p>My age < the age of the person opposite me</p>
+              
+          <p>And the statement would be TRUE. If, however, you were to say the following, and the person opposite of you was younger than you:</p>
+              
+          <p>My age < the age of the person opposite me</p>
+              
+          <p>The statement would be FALSE - the truth is that it is the other way around. This is how a loop thinks - if the expression is true, keep looping. If it is false, don't loop. With this in mind, lets have a look at the operators (symbols that represent an action) that are involved in boolean expressions: </p>
+        
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> < </td>
+                  <td> 	less than </td>
+                </tr>
+                <tr>
+                    <td> <= </td>
+                    <td> 	less than or equal to </td>
+                </tr>
+                <tr>
+                    <td> > </td>
+                    <td>greater than </td>
+                </tr>
+                <tr>
+                    <td> >= </td>
+                    <td> 	greater than or equal to </td>
+                </tr>
+                <tr>
+                    <td> != </td>
+                    <td> 	not equal to </td>
+                </tr>
+                <tr>
+                    <td> <> </td>
+                    <td>not equal to (alternate, != preferred) </td>
+                </tr>
+                <tr>
+                    <td> == </td>
+                    <td>equal to </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Conditional Statements
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>OK! We've (hopefully) covered 'while' loops. Now let's look at something a little different - conditionals. </p>
+          <p>Conditionals are where a section of code is only run if certain conditions are met. This is similar to the 'while' loop you just wrote, which only runs when x doesn't equal 0. However, Conditionals are only run once. The most common conditional in any program language, is the 'if' statement. Here is how it works: </p>
+
+          <strong>Code Example 6 - if statement and example</strong>
+          <pre><code>
+            {{"'''
+            if {conditions to be met}:
+                {do this}
+                {and this}
+                {and this}
+            {but this happens regardless}
+            {because it isn't indented}
+            '''
+            
+            #EXAMPLE 1
+            y = 1
+            if y == 1:
+                print ('y still equals 1, I was just checking')
+            
+            #EXAMPLE 2
+            print ('We will show the even numbers up to 20')
+            n = 1
+            while n <= 20:
+                n = n + 1
+                if n % 2 == 0:    
+                       print(n)
+            print('there, done.')
+            "}}
+          </code></pre>
+          <p>Example 2 there looks tricky. But all we have done is run an 'if' statement every time the 'while' loop runs. Remember that the % just means the remainder from a division - just checking that there is nothing left over if the number is divided by two - showing it is even. If it is even, it prints what 'n' is. </p>
+          <p class="instruction">Go ahead and try EXAMPLE 2 in the notebook</p>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                'else' and 'elif' - When it Ain't True
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>There are many ways you can use the 'if' statement, to deal with situations where your boolean expression ends up FALSE. They are 'else' and 'elif'. </p>
+          <p>'else' simply tells the computer what to do if the conditions of 'if' aren't met. For example, read the following: </p>
+
+          <strong>Code Example 7 - the else statement</strong>
+          <pre><code>
+            {{'a = 1
+            if a > 5:
+                print("This should not happen.")
+            else:
+                print("This should happen.")
+            '}}
+          </code></pre>
+          <p>'elif' is just a shortened way of saying 'else if'. When the 'if' statement fails to be true, 'elif' will do what is under it IF the conditions are met. For example: </p>
+
+          <strong>Code Example 8 - The elif statement</strong>
+          <pre><code>
+            {{'z = 4
+            if z > 70:
+                print("Something is very wrong")
+            elif z < 7:
+                print("This is normal")'}}
+          </code></pre>
+          <p>The 'if' statement, along with 'else' and 'elif' follow this form: </p>
+
+          <strong>Code Example 9 - the complete if syntax</strong>
+          <pre><code>
+            {{'
+            if {conditions}:
+                {run this code}
+            elif {conditions}:
+                {run this code}
+            elif {conditions}:
+                {run this code}
+            else:
+                {run this code}
+        
+        #You can have as many or as few elif statements as you need
+        #anywhere from zero to the sky.
+        #You can have at most one else statement
+        #and only after all other ifs and elifs.'}}
+          </code></pre>
+          <p>One of the most important points to remember is that you MUST have a colon (:) at the end of every line with an 'if', 'elif', 'else' or 'while' in it. </p>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Indentation
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>One other point is that the code to be executed if the conditions are met, MUST BE INDENTED. That means that if you want to loop the next five lines with a 'while' loop, you must put a set number of spaces at the beginning of each of the next five lines. This is good programming practice in any language, but python requires that you do it. Here is an example of both of the above points: </p>
+
+          <strong>Code Example 10 - Indentation</strong>
+          <pre><code>
+            {{'
+            a = 10
+            while a > 0:
+                print(a)
+                if a > 5:
+                    print("Big number!")
+                elif a % 2 != 0:
+                    print("This is an odd number")
+                    print("It is not greater than five, either")
+                else:
+                    print("this number is not greater than 5")
+                    print("nor is it odd")
+                    print("feeling special?")
+                a = a - 1
+                print("we just made a one less than what it was!")
+                print("and unless a is not greater than 0, we will do the loop again.")
+            print("well, it seems as if a is now no bigger than 0!")
+            print("the loop is now over, and without furthur ado, so is this program!")
+            '}}
+          </code></pre>
+          <p>Notice the three levels of indents there: </p>
+          <p>Each line in the first level starts with no spaces. It is the main program, and will always execute. Each line in the second level starts with four spaces. When there is an 'if' or loop on the first level, everything on the second level after that will be looped/'ifed', until a new line starts back on the first level again. Each line in the third level starts with eight spaces. When there is an 'if' or loop on the second level, everything on the third level after that will be looped/'ifed', until a new line starts back on the second level again. This goes on infinitely, until the person writing the program has an internal brain explosion, and cannot understand anything he/she has written. There is another loop, called the 'for' loop, but we will cover that in a later lesson, after we have learnt about lists. </p>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
     </div>
   </div>
   <div class="col-md-6 padding-0">

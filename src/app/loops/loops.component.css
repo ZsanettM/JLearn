@@ -40,3 +40,8 @@ pre{
   background-color: #E6EE9C;
   border-radius: 15px;
 }
+.instruction{
+  border: 2px solid #26A69A;
+  border-radius: 15px;
+  padding: 5px;
+}
