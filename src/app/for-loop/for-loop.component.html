@@ -1,0 +1,131 @@
+<div class="row container-fluid">
+  <div class="col-md-6">
+    <div class="container description padding-0">
+      <h3> For Loop</h3>
+      <p> This tutorial mainly consists of practical examples, which we will go through with the help of the notebook on the right.</p>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Looping through a range
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Sometimes, you may only need to loop a certain amount of times (say 10). If you're coming from another programming language, you might be looking for the usual for loop in a format somewhat like this: </p>
+          <pre><code>
+            {{"for (var i = 1 ; i < 10 ; i++ ) {
+            }"}}
+          </code></pre>
+          <p>Python doesn't have this type of loop. If you want to loop a certain number of times, simply use range(). </p>
+          <pre><code>
+            {{"# The below code will print numbers from 0 through 9
+            for integer in range(0,10):
+              print(integer)
+            
+            # The above code can further be simplified to:
+            # for integer in range(10):
+            #   print(integer)"}}
+          </code></pre>
+          <p>A couple of things you must take note of: </p>
+          <ul>
+            <li>The range starts with the starting number and ends <strong>up to</strong> the ending number. If you wanted to loop from 0 through 100, your range function will be range(0,101) as the function doesn't include the ending number.</li>
+            <br>
+            <li>The parameters for the range function are start (default of 0), end, and step (default is 1). A step is simply how much range() will increment by. If you wanted to loop from 100 to 0, simply use a step of -1. In other words: range(100,0,-1).</li>
+          </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Making a Menu Function
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Now to the business end of the lesson. Lets start writing programs. So far we have learnt variables, lists, loops, and functions. That is pretty much all we need for quite a bit of programming. So let's set ourselves a task. </p>
+          <strong>A menu function</strong>
+          <pre><code>
+            {{"# THE MENU FUNCTION
+            # The program asks for a string with all the menu options in it,
+            # and a text string asking a question.
+            # make sure every menu entry is unique.
+            
+            def menu(list, question):
+                for entry in list:
+                    print(1 + list.index(entry),)
+                    print (') ' + entry)
+            
+                return input(question) - 1
+            
+            # def menu(list, question): is telling the function to
+            # ask for two bits of information:
+            # A list of all the menu entries,
+            # and the question it will ask when all the options have been printed
+            
+            # for entry in list: is pretty much saying;
+            #'for every entry in the list, do the following:'
+            
+            # print list.index(entry) + 1 uses the .index() function to find
+            # where in the list the entry is in. print function then prints it
+            # it adds 1 to make the numbers more intelligable.
+            
+            # print ') ' + entry prints a bracket, and then the entry name
+            
+            # after the for loop is finished, input(question) - 1 asks the question,
+            # and returns the value to the main program (minus 1, to turn it back to
+            # the number the computer will understand)."}}
+          </code></pre>
+          <p>That wasn't very difficult, was it? the actual program only took up five lines - this is the wonder of how much we have learnt so far! All my comments take up sixteen lines - more than three times the program length. It is a good idea to comment your programs extensively. Remember that if you are going to be publishing your code open-source, there are going to be a lot of people checking out the code that you have written. We'll see the function we just wrote in our first example program. </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Our First 'Game'
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>What will our first example program be? How about a (very) simple text adventure game? Sounds like fun! It will only encompass one room of a house, and will be extremely simple. There will be five things, and a door. In one of the five things, is a key to the door. You need to find the key, then open the door. I will give a plain-english version first, then do it in python: </p>
+          <strong> Plain-english version of code</strong>
+          <pre><code>
+            {{"#Plain-english version of our 'game'
+
+            Tell the computer about our menu function
+            
+            Print a welcoming message, showing a description of the room.
+            We will give the player six things to look at: plant, painting,\
+             vase, lampshade, shoe, and the door
+            
+            Tell the computer that the door is locked
+            Tell the computer where the key is
+            
+            present a menu, telling you what things you can 'operate':
+                It will give you the six options
+                It will ask the question 'what will you look at?'
+            
+            if the user wanted to look at:
+                plant:
+                    If the key is here, give the player the key
+                    otherwise, tell them it isn't here
+                painting:
+                    same as above
+                etc.
+                door:
+                    If the player has the key, let them open the door
+                    Otherwise, tell them to look harder
+            
+            Give the player a well done message, for completing the game."}}
+          </code></pre>
+          <p class="instruction">From this, we can write a real program. Ready? Here it is (check out in the notebook):</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </div>
+  </div>
+
+  <div class="col-md-6 padding-0">
+      <iframe src="http://localhost:8888/notebooks/ForLoop.ipynb"></iframe>
+  </div>
+</div>

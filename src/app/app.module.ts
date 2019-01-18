@@ -13,6 +13,12 @@ import { VariablesComponent } from './variables/variables.component';
 import { SimpleAppsComponent } from './simple-apps/simple-apps.component';
 import { FunctionsComponent } from './functions/functions.component';
 import { FooterComponent } from './footer/footer.component';
+import { TuplesComponent } from './tuples/tuples.component';
+import { ForLoopComponent } from './for-loop/for-loop.component';
+import { ClassesComponent } from './classes/classes.component';
+import { ModulesComponent } from './modules/modules.component';
+import { FilesComponent } from './files/files.component';
+import { ExceptionsComponent } from './exceptions/exceptions.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +31,12 @@ import { FooterComponent } from './footer/footer.component';
     SimpleAppsComponent,
     FunctionsComponent,
     FooterComponent,
+    TuplesComponent,
+    ForLoopComponent,
+    ClassesComponent,
+    ModulesComponent,
+    FilesComponent,
+    ExceptionsComponent,
   ],
   imports: [
     BrowserModule,

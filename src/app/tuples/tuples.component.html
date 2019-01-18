@@ -1,0 +1,145 @@
+<div class="row container-fuid">
+  <div class="col-md-6">
+    <div class="container description padding-0">
+      <h3>Tuples, Lists, Dictionaries</h3>
+
+      <p>Think about it - variables store one bit of information. They may regurgitate (just not on the carpet...) that information at any point, and their bit of information can be changed at any time. Variables are great at what they do - storing a piece of information that may change over time. </p>
+      <p>But what if you need to store a long list of information, which doesn't change over time? Say, for example, the names of the months of the year. Or maybe a long list of information, that does change over time? Say, for example, the names of all your cats. You might get new cats, some may die, some may become your dinner (we should trade recipes!). What about a phone book? For that you need to do a bit of referencing - you would have a list of names, and attached to each of those names, a phone number. How would you do that? </p>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                The Solution - Lists, Tuples, and Dictionaries
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>For these three problems, Python uses three different solutions - lists, tuples, and dictionaries: </p>
+
+          <ul>
+            <li><strong>Lists</strong> are what they seem - a list of values. Each one of them is numbered, starting from zero - the first one is numbered zero, the second 1, the third 2, etc. You can remove values from the list, and add new values to the end. Example: Your many cats' names.</li>
+            <li><strong>Tuples</strong> are just like lists, but you can't change their values. The values that you give it first up, are the values that you are stuck with for the rest of the program. Again, each value is numbered starting from zero, for easy reference. Example: the names of the months of the year.</li>
+            <li><strong>Dictionaries</strong> are similar to what their name suggests - a dictionary. In a dictionary, you have an 'index' of words, and for each of them a definition. In Python, the word is called a 'key', and the definition a 'value'. The values in a dictionary aren't numbered - they aren't in any specific order, either - the key does the same thing. (Each key must be unique, though!) You can add, remove, and modify the values in dictionaries. Example: telephone book.</li>
+          </ul>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Tuples
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Tuples are pretty easy to make. You give your tuple a name, then after that the list of values it will carry. For example, the months of the year: </p>
+
+          <strong>
+              Code Example 1 - creating a tuple
+          </strong>
+          <pre><code>
+            {{"months = ('January','February','March','April','May','June',\
+            'July','August','September','October','November','December')"}}
+          </code></pre>
+          <p>Python then organises those values in a handy, numbered index - starting from zero, in the order that you entered them in. It would be organised like this: </p>
+
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Index</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>January </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>February </td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>March </td>
+              </tr>
+              <tr>
+                  <td>3</td>
+                  <td>April </td>
+              </tr>
+              <tr>
+                  <td>4</td>
+                  <td>May </td>
+              </tr>
+              <tr>
+                  <td>5</td>
+                  <td>June</td>
+              </tr>
+              <tr>
+                  <td>6</td>
+                  <td>July</td>
+              </tr>
+              <tr>
+                  <td>7</td>
+                  <td>August</td>
+              </tr>
+              <tr>
+                  <td>8</td>
+                  <td>September</td>
+              </tr>
+              <tr>
+                  <td>9</td>
+                  <td>October</td>
+              </tr>
+              <tr>
+                  <td>10</td>
+                  <td>November</td>
+              </tr>
+              <tr>
+                  <td>11</td>
+                  <td>December</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Lists
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>Lists are extremely similar to tuples. Lists are modifiable (or 'mutable', as a programmer may say), so their values can be changed. Most of the time we use lists, not tuples, because we want to easily change the values of things if we need to. </p>
+
+          <p>In the Jupyter notebook provided for this tutorial, we have created a list. We'll use that to demonstrate how lists can be maniplulated</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Dictionaries
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Ok, so there is more to life than the names of your cats. You need to call your sister, mother, son, the fruit man, and anyone else who needs to know that their favourite cat is dead. For that you need a telephone book. </p>
+          <p>Now, the lists we've used above aren't really suitable for a telephone book. You need to know a number based on someone's name - not the other way around, like what we did with the cats. In the examples of months and cats, we gave the computer a number, and it gave us a name. This time we want to give the computer a name, and it give us a number. For this we need dictionaries. </p>
+          <p>So how do we make a dictionary? Put away your binding equipment, it isn't that advanced.
+
+          Remember, dictionaries have keys, and values. In a phone book, you have people's names, then their numbers. See a similarity? </p>
+          <p>When you initially create a dictionary, it is very much like making a tuple or list. Tuples have ( and ) things, lists have [ and ] things. Guess what! dictionaries have {{"{"}}" and {{"}"}} things - curly braces. </p>
+          <p class="instruction">Let's get back to our interactive notebook to see an example!</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </div>
+  </div>
+  <div class="col-md-6 padding-0">
+      <iframe src="http://localhost:8888/notebooks/Tuples,lists.ipynb"></iframe>
+    </div>
+</div>
