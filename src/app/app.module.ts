@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { TutorialComponent } from './tutorial/tutorial.component';
 import { HomeComponent } from './home/home.component';
 import { LoopsComponent } from './loops/loops.component';
 import { VariablesComponent } from './variables/variables.component';
@@ -24,7 +23,6 @@ import { ExceptionsComponent } from './exceptions/exceptions.component';
   declarations: [
     AppComponent,
     NavigationComponent,
-    TutorialComponent,
     HomeComponent,
     LoopsComponent,
     VariablesComponent,
