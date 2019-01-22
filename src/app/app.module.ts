@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
@@ -18,7 +20,9 @@ import { ClassesComponent } from './classes/classes.component';
 import { ModulesComponent } from './modules/modules.component';
 import { FilesComponent } from './files/files.component';
 import { ExceptionsComponent } from './exceptions/exceptions.component';
+import { UserListComponent } from './user-list/user-list.component';
 
+//The UI components are declarations
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,13 +39,17 @@ import { ExceptionsComponent } from './exceptions/exceptions.component';
     ModulesComponent,
     FilesComponent,
     ExceptionsComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatExpansionModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
   ],
+  //the service glue is a provider
   providers: [],
   bootstrap: [AppComponent]
 })
