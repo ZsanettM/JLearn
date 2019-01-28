@@ -20,7 +20,6 @@ import { ClassesComponent } from './classes/classes.component';
 import { ModulesComponent } from './modules/modules.component';
 import { FilesComponent } from './files/files.component';
 import { ExceptionsComponent } from './exceptions/exceptions.component';
-import { UserListComponent } from './user-list/user-list.component';
 
 //The UI components are declarations
 @NgModule({
@@ -39,7 +38,6 @@ import { UserListComponent } from './user-list/user-list.component';
     ModulesComponent,
     FilesComponent,
     ExceptionsComponent,
-    UserListComponent,
   ],
   imports: [
     BrowserModule,

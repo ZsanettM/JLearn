@@ -27,13 +27,28 @@
         </li>
       </ul>
   </div>
-  <div class="navbar-expand ml-auto navbar-nav">
-    <div class="navbar-nav">
+  <div class="navbar-expand ml-auto">
+    <ul class="navbar-nav">
       <!-- Trigger modal -->
-      <a class="nav-item nav-link" type="button" data-toggle="modal" data-target="#LoginModal">
-        <img src="/assets/log-in.png" width="40" height="40" alt="">Login
-      </a>
-    </div>
+      
+      <div *ngIf="showName; else login">
+        <li class="nav-item">
+          <a class="nav-item nav-link">
+              Hello {{user.username}}
+          </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-item nav-link" (click)="logout()">
+                <img src="/assets/log-out.png" width="40" height="40" alt="">Logout
+            </a>
+        </li>
+      </div>
+      <ng-template #login>
+        <a class="nav-item nav-link" type="button" data-toggle="modal" data-target="#LoginModal">
+          <img src="/assets/log-in.png" width="40" height="40" alt="">Login
+        </a>
+      </ng-template>
+    </ul>
   </div>
 
 </nav>
@@ -50,12 +65,13 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
             <div class="input-group">
-              <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+              <input id="username" type="text" class="form-control" name="username" placeholder="Username" required [(ngModel)]="username">
             </div>
+            <div >Todo: remove {{username}}</div>
             <div class="input-group">
-              <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+              <input id="password" type="password" class="form-control" name="password" placeholder="Password" required [(ngModel)]="password">
             </div>
             <br>
             <p>Haven't registered yet? <a href="#RegisterModal" type="link" data-toggle="modal" data-target="#RegisterModal" data-dismiss="modal">Register</a></p>
@@ -63,7 +79,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-success" (click)="onSubmit()" data-dismiss="modal">Submit</button>
         </div>
       </div>
     </div>
