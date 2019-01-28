@@ -27,14 +27,13 @@
         </li>
       </ul>
   </div>
-  <div class="navbar-expand ml-auto">
+  <div *ngIf="showName; else login" class="navbar-expand ml-auto">
     <ul class="navbar-nav">
       <!-- Trigger modal -->
-      
-      <div *ngIf="showName; else login">
+
         <li class="nav-item">
-          <a class="nav-item nav-link">
-              Hello {{user.username}}
+          <a class="nav-item nav-link navAlign">
+              Hello {{user.username}}! 
           </a>
         </li>
         <li class="nav-item">
@@ -42,14 +41,19 @@
                 <img src="/assets/log-out.png" width="40" height="40" alt="">Logout
             </a>
         </li>
-      </div>
-      <ng-template #login>
-        <a class="nav-item nav-link" type="button" data-toggle="modal" data-target="#LoginModal">
-          <img src="/assets/log-in.png" width="40" height="40" alt="">Login
-        </a>
-      </ng-template>
     </ul>
   </div>
+  <ng-template #login class="navbar-expand ml-auto">
+    <ul class="navbar-nav">
+      <!-- Trigger modal -->
+
+        <li class="nav-item">
+          <a class="nav-item nav-link" type="button" data-toggle="modal" data-target="#LoginModal">
+            <img src="/assets/log-in.png" width="40" height="40" alt="">Login
+          </a>
+        </li>
+    </ul>
+  </ng-template>
 
 </nav>
 
@@ -69,7 +73,7 @@
             <div class="input-group">
               <input id="username" type="text" class="form-control" name="username" placeholder="Username" required [(ngModel)]="username">
             </div>
-            <div >Todo: remove {{username}}</div>
+            <div >TODO: remove {{username}}</div>
             <div class="input-group">
               <input id="password" type="password" class="form-control" name="password" placeholder="Password" required [(ngModel)]="password">
             </div>

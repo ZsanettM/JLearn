@@ -9,8 +9,8 @@ import { UserService } from '../shared/user/user.service';
 export class NavigationComponent implements OnInit {
   user: any
   showName: boolean
-  username: String
-  password: String
+  username: string
+  password: string
 
   constructor(private userService: UserService) { }
 
@@ -28,7 +28,7 @@ export class NavigationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.checkUser("Jane").subscribe(data => {
+    this.userService.checkUser(this.username).subscribe(data => {
       this.user = data;
       if (this.user){
         this.showName = true;     
