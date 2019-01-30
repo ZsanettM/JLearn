@@ -11,20 +11,23 @@ export class NavigationComponent implements OnInit {
   showName: boolean
   username: string
   password: string
+  score: number
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-   this.userService.getUserName().subscribe(data => {
+   /*this.userService.getUserName().subscribe(data => {
       this.user = data;
       if (this.user){
         this.showName = true;     
       }
-    });
+    });*/
   }
 
   logout() {
     this.showName = false;
+    this.username = '';
+    this.password = '';
   }
 
   onSubmit() {
