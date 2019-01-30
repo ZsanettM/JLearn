@@ -33,7 +33,12 @@
 
         <li class="nav-item">
           <a class="nav-item nav-link navAlign">
-              Hello {{user.username}}! 
+              Hello {{user.username}} ! 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link navAlign">
+               pts {{user.score}}
           </a>
         </li>
         <li class="nav-item">
@@ -69,7 +74,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+          <form #loginForm="ngForm">
             <div class="input-group">
               <input id="username" type="text" class="form-control" name="username" placeholder="Username" required [(ngModel)]="username">
             </div>

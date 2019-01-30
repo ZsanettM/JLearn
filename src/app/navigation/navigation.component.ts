@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user/user.service';
+import { User } from '../shared/user/user';
 
 @Component({
   selector: 'app-navigation',
@@ -7,21 +8,18 @@ import { UserService } from '../shared/user/user.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  user: any
+  user: User = new User()
   showName: boolean
   username: string
   password: string
-  score: number
+  score: number =5;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-   /*this.userService.getUserName().subscribe(data => {
-      this.user = data;
-      if (this.user){
-        this.showName = true;     
-      }
-    });*/
+    console.log("username: "+ this.user.username)
+    console.log("password: "+ this.user.psw)
+    console.log("score: "+ this.user.score)
   }
 
   logout() {
@@ -31,12 +29,12 @@ export class NavigationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.checkUser(this.username).subscribe(data => {
-      this.user = data;
-      if (this.user){
-        this.showName = true;     
-      }
-    })
+   if (this.userService.assignUserData(this.username)){
+      this.userService.currentUserObj.subscribe(object => this.user = object);
+      console.log(this.user.score)
+      this.showName = true;     
+    }
+    
   }
 
 }
