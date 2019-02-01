@@ -25,9 +25,16 @@ export class UserService {
 
   assignUserData(uname: string): boolean{
     this.checkUser(uname).subscribe(data => {
-      this.sharedObj.next(data);
+      this.user = data;
+      this.user.score = 0;
+      this.sharedObj.next(this.user);
     })
 
     return true;
+  }
+
+  updateScore(points: number){
+    //this.user.score += points;
+    this.sharedObj.subscribe(u => u.score+=points);
   }
 }
