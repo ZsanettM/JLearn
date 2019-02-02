@@ -3,7 +3,7 @@
     <div class="container description padding-0">
       <h3> Very Simple Programs</h3>
 
-      <p>Python makes it easy to run single lines of code—one-liner programs. Let's give it a go.</p>
+      <p>Python makes it easy to run single lines of code-one-liner programs. Let's give it a go.</p>
       
       <mat-accordion>
         <mat-expansion-panel>
@@ -82,14 +82,13 @@
       </mat-accordion>
 
 
+      <div class="read-check">
+        <input type="checkbox" class="read-check-input" id="simpleProgramsCheck" (click)="onChecked()">
+        <label class="form-check-label" for="exampleCheck1"> Tutorial finished
+            <span *ngIf="checked"> +30 pts</span>
+        </label>
+     </div>
 
-    </div>
-
-    <div class="read-check">
-      <input type="checkbox" class="read-check-input" id="simpleProgramsCheck" (click)="onChecked()">
-      <label class="form-check-label" for="exampleCheck1"> Tutorial finished
-          <span *ngIf="checked"> +30 pts</span>
-      </label>
     </div>
   </div>
 

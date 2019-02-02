@@ -72,6 +72,13 @@
           </div>
         </mat-expansion-panel>
       </mat-accordion>
+
+      <div class="read-check">
+        <input type="checkbox" class="read-check-input" id="simpleProgramsCheck" (click)="onChecked()">
+        <label class="form-check-label" for="exampleCheck1"> Tutorial finished
+            <span *ngIf="checked"> +30 pts</span>
+        </label>
+     </div>
     </div>
   </div>
   <div class="col-md-6 padding-0">

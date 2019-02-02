@@ -49,6 +49,7 @@ pre{
 
 .read-check {
   text-align: center;
-  border-left: 6px solid green;
+  margin-top: 5px;
+  padding-top: 2px;
   background-color: lightgrey;
 }
