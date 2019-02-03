@@ -76,19 +76,38 @@
         <div class="modal-body">
           <form #loginForm="ngForm">
             <div class="input-group">
-              <input id="username" type="text" class="form-control" name="username" placeholder="Username" required [(ngModel)]="username">
+              <input id="name" type="text" class="form-control" name="name" placeholder="Username" required [(ngModel)]="username" #name="ngModel">
             </div>
             <div >TODO: remove {{username}}</div>
             <div class="input-group">
-              <input id="password" type="password" class="form-control" name="password" placeholder="Password" required [(ngModel)]="password">
+              <input id="psw" type="password" class="form-control" name="psw" placeholder="Password" required [(ngModel)]="password" #psw="ngModel">
             </div>
             <br>
             <p>Haven't registered yet? <a href="#RegisterModal" type="link" data-toggle="modal" data-target="#RegisterModal" data-dismiss="modal">Register</a></p>
           </form>
         </div>
+
+
+        <div *ngIf="(name.invalid && (name.dirty || name.touched))"
+        class="alert alert-danger">
+    
+          <div *ngIf="name.errors.required">
+            Name is required.
+          </div>
+    
+         </div>
+         <div *ngIf="(psw.invalid && (psw.dirty || psw.touched))"
+        class="alert alert-danger">
+
+          <div *ngIf="psw.errors.required">
+            Password is required.
+          </div>
+    
+         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success" (click)="onSubmit()" data-dismiss="modal">Submit</button>
+          <button type="submit" class="btn btn-success" (click)="onSubmit()" data-dismiss="modal" [disabled]="((psw.invalid || name.invalid) ? true : false)">Submit</button>
         </div>
       </div>
     </div>
@@ -105,22 +124,35 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form #regForm="ngForm">
                 <div class="input-group">
-                    <input id="username" type="text" class="form-control" name="username" placeholder="Username">
+                    <input id="nameReg" type="text" class="form-control" name="nameReg" required [(ngModel)]="rName" #nameReg="ngModel" placeholder="Username">
                   </div>
               <div class="input-group">
-                <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+                <input id="emailReg" type="email" class="form-control" name="emailReg" required [(ngModel)]="rEmail" #emailReg="ngModel" placeholder="Email">
               </div>
               <div class="input-group">
-                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                <input id="pswReg" type="password" class="form-control" name="pswReg" required [(ngModel)]="rPsw" #pswReg="ngModel" placeholder="Password">
               </div>
               <br>
             </form>
           </div>
+
+          <div *ngIf="nameReg.invalid && (nameReg.dirty || nameReg.touched)">
+            <div *ngIf="nameReg.errors.required">Enter a username.</div>
+          </div>
+          
+          <div *ngIf="emailReg.invalid && (emailReg.dirty || emailReg.touched)">
+              <div *ngIf="emailReg.errors.required">Enter your email.</div>
+          </div>
+          
+          <div *ngIf="pswReg.invalid && (pswReg.dirty || pswReg.touched)">
+              <div *ngIf="pswReg.errors.required">Enter a password.</div>
+          </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-primary" [disabled]="((nameReg.invalid || emailReg.invalid || pswReg.invalid) ? true : false)">Submit</button>
           </div>
         </div>
       </div>

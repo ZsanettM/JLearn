@@ -17,9 +17,9 @@ export class NavigationComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    console.log("username: "+ this.user.username)
+    /*console.log("username: "+ this.user.username)
     console.log("password: "+ this.user.psw)
-    console.log("score: "+ this.user.score)
+    console.log("score: "+ this.user.score)*/
   }
 
   logout() {
