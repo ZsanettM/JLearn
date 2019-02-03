@@ -14,10 +14,12 @@ export class VariablesComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.checked = Boolean(localStorage.getItem('variablesRead'));
   }
 
   onChecked(){
     this.checked = !this.checked;
+    localStorage.setItem('variablesRead', this.checked.toString());
     if (this.checked){this.userService.updateScore(this.scoreEarned);}
     else {this.userService.updateScore(-this.scoreEarned);}
     

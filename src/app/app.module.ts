@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { MatExpansionModule, MatCheckboxModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +43,7 @@ import { ExceptionsComponent } from './exceptions/exceptions.component';
     BrowserModule,
     AppRoutingModule,
     MatExpansionModule,
+    MatCheckboxModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,

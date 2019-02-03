@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "server_back_end"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}

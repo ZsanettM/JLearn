@@ -14,10 +14,12 @@ export class SimpleAppsComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.checked = Boolean(localStorage.getItem('simpleRead'));
   }
 
   onChecked(){
     this.checked = !this.checked;
+    localStorage.setItem('simpleRead', this.checked.toString());
     if (this.checked){this.userService.updateScore(this.scoreEarned);}
     else {this.userService.updateScore(-this.scoreEarned);}
     
