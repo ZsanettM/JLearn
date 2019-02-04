@@ -8,6 +8,7 @@ export class UserService {
   private user: User = new User()
   private sharedObj = new BehaviorSubject(this.user);
   public currentUserObj = this.sharedObj.asObservable();
+  public authenticated: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +26,8 @@ export class UserService {
 
   assignUserData(uname: string): boolean{
     this.checkUser(uname).subscribe(data => {
+      if (data) {this.authenticated = true;}
+      console.log("authenticated: "+ this.authenticated);
       this.user = data;
       this.user.score = 0;
       this.sharedObj.next(this.user);

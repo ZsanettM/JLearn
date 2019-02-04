@@ -20,6 +20,7 @@ import { ClassesComponent } from './classes/classes.component';
 import { ModulesComponent } from './modules/modules.component';
 import { FilesComponent } from './files/files.component';
 import { ExceptionsComponent } from './exceptions/exceptions.component';
+import { AuthGuardService } from './shared/auth-guard.service';
 
 //The UI components are declarations
 @NgModule({
@@ -49,7 +50,7 @@ import { ExceptionsComponent } from './exceptions/exceptions.component';
     FormsModule,
   ],
   //the service glue is a provider
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
