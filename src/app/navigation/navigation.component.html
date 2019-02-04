@@ -63,7 +63,7 @@
 </nav>
 
 
-  <!-- Modal 1-->
+  <!-- Modal 1 (Login)-->
   <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -75,10 +75,11 @@
         </div>
         <div class="modal-body">
           <form #loginForm="ngForm">
+            <label for="name"><strong>Username:</strong></label>
             <div class="input-group">
               <input id="name" type="text" class="form-control" name="name" placeholder="Username" required [(ngModel)]="username" #name="ngModel">
             </div>
-            <div >TODO: remove {{username}}</div>
+            <label for="psw"><strong>Password:</strong></label>
             <div class="input-group">
               <input id="psw" type="password" class="form-control" name="psw" placeholder="Password" required [(ngModel)]="password" #psw="ngModel">
             </div>
@@ -113,7 +114,7 @@
     </div>
   </div>
 
-    <!-- Modal 2 -->
+    <!-- Modal 2 (Register)-->
     <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -125,34 +126,51 @@
           </div>
           <div class="modal-body">
             <form #regForm="ngForm">
+                <label for="nameReg"><strong>Enter a username:</strong></label>
                 <div class="input-group">
-                    <input id="nameReg" type="text" class="form-control" name="nameReg" required [(ngModel)]="rName" #nameReg="ngModel" placeholder="Username">
-                  </div>
-              <div class="input-group">
-                <input id="emailReg" type="email" class="form-control" name="emailReg" required [(ngModel)]="rEmail" #emailReg="ngModel" placeholder="Email">
-              </div>
-              <div class="input-group">
-                <input id="pswReg" type="password" class="form-control" name="pswReg" required [(ngModel)]="rPsw" #pswReg="ngModel" placeholder="Password">
-              </div>
+                  <input id="nameReg" type="text" class="form-control" name="nameReg" required [(ngModel)]="rName" #nameReg="ngModel" placeholder="Username">
+                </div>
+
+                <div *ngIf="nameReg.invalid && (nameReg.dirty || nameReg.touched)" class="alert alert-danger">
+                    <div *ngIf="nameReg.errors.required">Enter a username.</div>
+                 </div>
+
+                <label for="emailReg"><strong>Enter your email address:</strong></label>
+                <div class="input-group">
+                  <input id="emailReg" type="email" class="form-control" name="emailReg" required email [(ngModel)]="rEmail" #emailReg="ngModel" placeholder="Email">
+                </div>
+
+                <div *ngIf="emailReg.invalid && (emailReg.dirty || emailReg.touched)" class="alert alert-danger">
+                    <div *ngIf="emailReg.errors.required">Enter your email.</div>
+                    <div *ngIf="emailReg.dirty">
+                      <div *ngIf="emailReg.errors.email">Enter a valid email.</div>
+                    </div>
+                </div>
+
+                <label for="pswReg"><strong>Enter a password:</strong></label>
+                <div class="input-group">
+                  <input id="pswReg" type="password" class="form-control" name="pswReg" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}"  [(ngModel)]="rPsw" #pswReg="ngModel" placeholder="Password">
+                </div>
+
+                <div *ngIf="pswReg.invalid && (pswReg.dirty || pswReg.touched)" class="alert alert-danger">
+                    <div *ngIf="pswReg.errors.minlength || pswReg.errors.required">Enter a password (min 8 chars).</div>
+                    <div *ngIf="pswReg.errors.pattern">Your password must contain at least 
+                      <ul>
+                        <li>1 lower-case character,</li>
+                        <li>1 upper-case character,</li>
+                        <li>and 1 numeric character</li>
+                      </ul></div>
+                </div>
+              {{rPsw}}
               <br>
             </form>
           </div>
 
-          <div *ngIf="nameReg.invalid && (nameReg.dirty || nameReg.touched)">
-            <div *ngIf="nameReg.errors.required">Enter a username.</div>
-          </div>
-          
-          <div *ngIf="emailReg.invalid && (emailReg.dirty || emailReg.touched)">
-              <div *ngIf="emailReg.errors.required">Enter your email.</div>
-          </div>
-          
-          <div *ngIf="pswReg.invalid && (pswReg.dirty || pswReg.touched)">
-              <div *ngIf="pswReg.errors.required">Enter a password.</div>
-          </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" [disabled]="((nameReg.invalid || emailReg.invalid || pswReg.invalid) ? true : false)">Submit</button>
+            
           </div>
         </div>
       </div>
