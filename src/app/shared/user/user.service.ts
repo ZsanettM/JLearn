@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { User } from './user';
 
 @Injectable({ providedIn: 'root' })
@@ -19,11 +20,22 @@ export class UserService {
   getUserName(): Observable<any> {
     return this.http.get('//localhost:8080/name-users');
   }
-
+  //User Authentication ---------------------------------------------------------
+  //With JWT
+  //TODO: check for password as well! (RS256)
   checkUser(uname: string): Observable<any>  {
-    return this.http.put('//localhost:8080/find', JSON.stringify({username:uname, password:"psw"}), this.httpOptions);
+    return this.http.post<{access_token: string}>('//localhost:8080/find', JSON.stringify({username:uname, password:"psw"}), this.httpOptions)
+      .pipe(tap(result => {
+        localStorage.setItem('access_token', result.access_token);
+      }));
+      
   }
-
+  //Without JWT:
+/*
+  checkUser(uname: string): Observable<any>  {
+    return this.http.post('//localhost:8080/find', JSON.stringify({username:uname, password:"psw"}), this.httpOptions);
+  }
+*/
   assignUserData(uname: string): boolean{
     this.checkUser(uname).subscribe(data => {
       if (data) {this.authenticated = true;}
@@ -33,7 +45,17 @@ export class UserService {
       this.sharedObj.next(this.user);
     })
 
+    console.log("JWT assignUser(): " + localStorage.getItem('access_token'));
     return true;
+  }
+  //---------------------------------------------------------------------------------
+
+  logout() {
+    localStorage.removeItem('access_token');
+  }
+
+  loggedIn(): boolean {
+    return localStorage.getItem('access_token') !== null;
   }
 
   updateScore(points: number){

@@ -27,12 +27,21 @@ export class NavigationComponent implements OnInit {
     /*this.regForm = new FormGroup({
       'rPsw': new FormControl(this.rPsw, Validators.pattern('([a-z]+[A-Z]+[0-9]+)'))
     });*/
+    if (this.userService.loggedIn()) {
+      this.showName = true;   
+    }
+    else {
+      this.showName = false;
+    }
+    console.log("JWT onInit(): " + localStorage.getItem('access_token'));
   }
 
   logout() {
+    this.userService.logout();
     this.showName = false;
     this.username = '';
     this.password = '';
+    console.log("JWT logout(): " + localStorage.getItem('access_token'));
   }
 
   onSubmit() {

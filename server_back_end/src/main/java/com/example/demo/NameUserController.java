@@ -28,7 +28,7 @@ class NameUserController{
 
     @RequestMapping(
         value = "/find", 
-        method = {RequestMethod.GET, RequestMethod.PUT})
+        method = {RequestMethod.GET, RequestMethod.POST})
     @CrossOrigin(origins = "http://localhost:4200")
     public User fUser(@RequestBody User u){
         User checkedUser = this.repository.findByUsername(u.getUsername());

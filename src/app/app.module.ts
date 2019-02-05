@@ -5,7 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ExceptionsComponent } from './exceptions/exceptions.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
+import { AuthGuardService } from './shared/auth-guard.service';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
@@ -19,8 +22,6 @@ import { ForLoopComponent } from './for-loop/for-loop.component';
 import { ClassesComponent } from './classes/classes.component';
 import { ModulesComponent } from './modules/modules.component';
 import { FilesComponent } from './files/files.component';
-import { ExceptionsComponent } from './exceptions/exceptions.component';
-import { AuthGuardService } from './shared/auth-guard.service';
 
 //The UI components are declarations
 @NgModule({
@@ -48,6 +49,14 @@ import { AuthGuardService } from './shared/auth-guard.service';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function tokenGetter() {
+          return localStorage.getItem('access_token');
+        },
+        whitelistedDomains: ['localhost:4200']
+      }
+    })
   ],
   //the service glue is a provider
   providers: [AuthGuardService],
