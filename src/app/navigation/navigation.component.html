@@ -82,6 +82,7 @@
             <label for="psw"><strong>Password:</strong></label>
             <div class="input-group">
               <input id="psw" type="password" class="form-control" name="psw" placeholder="Password" required [(ngModel)]="password" #psw="ngModel">
+              {{password}}
             </div>
             <br>
             <p>Haven't registered yet? <a href="#RegisterModal" type="link" data-toggle="modal" data-target="#RegisterModal" data-dismiss="modal">Register</a></p>

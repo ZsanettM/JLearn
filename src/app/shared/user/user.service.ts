@@ -6,7 +6,7 @@ import { User } from './user';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private user: User = new User()
+  private user: User = new User();
   private sharedObj = new BehaviorSubject(this.user);
   public currentUserObj = this.sharedObj.asObservable();
   public authenticated: boolean = false;
@@ -23,10 +23,12 @@ export class UserService {
   //User Authentication ---------------------------------------------------------
   //With JWT
   //TODO: check for password as well! (RS256)
-  checkUser(uname: string): Observable<any>  {
-    return this.http.post<{access_token: string}>('//localhost:8080/find', JSON.stringify({username:uname, password:"psw"}), this.httpOptions)
+  checkUser(uname: string, psw: string): Observable<any>  {
+    return this.http.post<{access_token: string}>('//localhost:8080/find', JSON.stringify({username:uname, password:psw}), this.httpOptions)
       .pipe(tap(result => {
+        if (result != null) {
         localStorage.setItem('access_token', result.access_token);
+        }
       }));
       
   }
@@ -36,13 +38,15 @@ export class UserService {
     return this.http.post('//localhost:8080/find', JSON.stringify({username:uname, password:"psw"}), this.httpOptions);
   }
 */
-  assignUserData(uname: string): boolean{
-    this.checkUser(uname).subscribe(data => {
-      if (data) {this.authenticated = true;}
-      console.log("authenticated: "+ this.authenticated);
-      this.user = data;
-      this.user.score = 0;
-      this.sharedObj.next(this.user);
+  assignUserData(uname: string, psw: string): boolean{
+    this.checkUser(uname, psw).subscribe(data => {
+      if (data != null) {
+        this.authenticated = true;
+        this.user = data;
+        this.user.score = 0;
+        this.sharedObj.next(this.user);
+      }
+      //console.log(this.sharedObj);
     })
 
     console.log("JWT assignUser(): " + localStorage.getItem('access_token'));
@@ -52,6 +56,9 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userScore");
+    this.authenticated = false;
   }
 
   loggedIn(): boolean {

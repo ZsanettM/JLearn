@@ -28,29 +28,38 @@ export class NavigationComponent implements OnInit {
       'rPsw': new FormControl(this.rPsw, Validators.pattern('([a-z]+[A-Z]+[0-9]+)'))
     });*/
     if (this.userService.loggedIn()) {
+      this.user.username = localStorage.getItem("userName");
+      this.user.score = Number(localStorage.getItem("userScore"));
       this.showName = true;   
     }
     else {
       this.showName = false;
     }
+    console.log("The user onInit: ",this.user)
     console.log("JWT onInit(): " + localStorage.getItem('access_token'));
   }
 
   logout() {
-    this.userService.logout();
     this.showName = false;
+    this.userService.logout();
+    this.user = null;
     this.username = '';
     this.password = '';
     console.log("JWT logout(): " + localStorage.getItem('access_token'));
   }
 
   onSubmit() {
-   if (this.userService.assignUserData(this.username)){
-      this.userService.currentUserObj.subscribe(object => this.user = object);
-      console.log(this.user.score)
-      this.showName = true;     
-    }
-    
+      this.userService.assignUserData(this.username, this.password);
+      if (this.userService.authenticated){
+        this.userService.currentUserObj.subscribe(object => {
+          this.user = object;
+          localStorage.setItem("userName", this.user.username);
+          localStorage.setItem("userScore", this.user.score.toString());
+          this.showName = true;  
+        });   
+      }
+
+
   }
 
 }
