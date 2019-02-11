@@ -8,7 +8,8 @@ import { SimpleAppsComponent } from './simple-apps/simple-apps.component';
 import { FunctionsComponent } from './functions/functions.component';
 import { VariablesComponent } from './variables/variables.component';
 import { TuplesComponent } from './tuples/tuples.component';
-import { ForLoopComponent} from './for-loop/for-loop.component'
+import { ForLoopComponent } from './for-loop/for-loop.component'
+import { ProgressComponent } from './progress/progress.component';
 import { AuthGuardService } from './shared/auth-guard.service';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'variables', component: VariablesComponent, canActivate: [AuthGuardService]},
   { path: 'tuples', component: TuplesComponent, canActivate: [AuthGuardService]},
   { path: 'forLoops', component: ForLoopComponent, canActivate: [AuthGuardService]},
+  { path: 'progress', component: ProgressComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];

@@ -46,3 +46,10 @@ iframe {
     border-radius: 15px;
     padding: 5px;
   }
+
+  .read-check {
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 2px;
+    background-color: lightgrey;
+  }
