@@ -24,6 +24,10 @@ public class User {
         return password;
     }
 
+    public int getScore(){
+        return score;
+    }
+
     //setters
     public void setUsername(String uname){
         this.username = uname;
@@ -31,5 +35,9 @@ public class User {
 
     public void setPassword(String psw){
         this.password = psw;
+    }
+
+    public void setScore(int score){
+        this.score = score;
     }
 }

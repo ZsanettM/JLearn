@@ -49,17 +49,21 @@ export class NavigationComponent implements OnInit {
   }
 
   onSubmit() {
-      this.userService.assignUserData(this.username, this.password);
-      if (this.userService.authenticated){
+      //this.userService.assignUserData(this.username, this.password);
+      if (this.userService.assignUserData(this.username, this.password)){
         this.userService.currentUserObj.subscribe(object => {
           this.user = object;
           localStorage.setItem("userName", this.user.username);
           localStorage.setItem("userScore", this.user.score.toString());
+          localStorage.setItem("authenticated", "true")
           this.showName = true;  
         });   
       }
+  }
 
-
+  onRegister(){
+    this.userService.registerUser(this.rName, this.rPsw, 0);
+    console.log("register clicked");
   }
 
 }

@@ -20,6 +20,11 @@ export class UserService {
   getUserName(): Observable<any> {
     return this.http.get('//localhost:8080/name-users');
   }
+
+  registerUser(uname: string, psw: string, score: number) {
+    this.http.post('//localhost:8080/save', JSON.stringify({username: uname, password: psw, score: score}), this.httpOptions).subscribe(data => console.log(data));
+  }
+
   //User Authentication ---------------------------------------------------------
   //With JWT
   //TODO: check for password as well! (RS256)
@@ -50,7 +55,8 @@ export class UserService {
     })
 
     console.log("JWT assignUser(): " + localStorage.getItem('access_token'));
-    return true;
+    console.log("authenticated assignUserData(): " + this.authenticated);
+    return this.authenticated;
   }
   //---------------------------------------------------------------------------------
 
@@ -58,6 +64,7 @@ export class UserService {
     localStorage.removeItem('access_token');
     localStorage.removeItem("userName");
     localStorage.removeItem("userScore");
+    localStorage.removeItem("authenticated")
     this.authenticated = false;
   }
 

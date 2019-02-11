@@ -42,7 +42,7 @@
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-item nav-link" (click)="logout()">
+            <a class="nav-item nav-link log" (click)="logout()">
                 <img src="/assets/log-out.png" width="40" height="40" alt="">Logout
             </a>
         </li>
@@ -53,7 +53,7 @@
       <!-- Trigger modal -->
 
         <li class="nav-item">
-          <a class="nav-item nav-link" type="button" data-toggle="modal" data-target="#LoginModal">
+          <a class="nav-item nav-link log" type="button" data-toggle="modal" data-target="#LoginModal">
             <img src="/assets/log-in.png" width="40" height="40" alt="">Login
           </a>
         </li>
@@ -170,7 +170,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" [disabled]="((nameReg.invalid || emailReg.invalid || pswReg.invalid) ? true : false)">Submit</button>
+            <button type="button" class="btn btn-primary" (click)="onRegister()" data-dismiss="modal" [disabled]="((nameReg.invalid || emailReg.invalid || pswReg.invalid) ? true : false)">Submit</button>
             
           </div>
         </div>

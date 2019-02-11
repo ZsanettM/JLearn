@@ -22,6 +22,7 @@ import { ForLoopComponent } from './for-loop/for-loop.component';
 import { ClassesComponent } from './classes/classes.component';
 import { ModulesComponent } from './modules/modules.component';
 import { FilesComponent } from './files/files.component';
+import { ProgressComponent } from './progress/progress.component';
 
 //The UI components are declarations
 @NgModule({
@@ -40,6 +41,7 @@ import { FilesComponent } from './files/files.component';
     ModulesComponent,
     FilesComponent,
     ExceptionsComponent,
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,
