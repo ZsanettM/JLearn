@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Network, DataSet, Node, Edge, IdType } from 'vis';
+import { Network, Node, Edge, DataSet, IdType, Graph2d } from 'vis';
+import 'vis/dist/vis-timeline-graph2d.min.css';
 
 @Component({
   selector: 'app-progress',
@@ -15,29 +16,25 @@ export class ProgressComponent implements OnInit {
     public network : Network;
 
     public ngOnInit(): void {
-          var nodes = new DataSet([
-              {id: 1, label: 'Node 1'},
-              {id: 2, label: 'Node 2'},
-              {id: 3, label: 'Node 3'},
-              {id: 4, label: 'Node 4'},
-              {id: 5, label: 'Node 5'}
-          ]);
-            // create an array with edges
-            var edges = new DataSet([
-              {from: 1, to: 3},
-              {from: 1, to: 2},
-              {from: 2, to: 4},
-              {from: 2, to: 5},
-              {from: 3, to: 3}
-            ]);
-           // create a network
-          var container = document.getElementById('mynetwork');
-          var data = {
-            nodes: nodes,
-            edges: edges
+
+      var container = document.getElementById('mynetwork');       
+
+      var items = [
+        {x: '2014-06-11', y: 10},
+        {x: '2014-06-12', y: 25},
+        {x: '2014-06-13', y: 30},
+        {x: '2014-06-14', y: 10},
+        {x: '2014-06-15', y: 15},
+        {x: '2014-06-16', y: 30}
+      ];
+          
+          var dataset = new DataSet(items);
+          var options = {
+            start: '2014-06-05',
+            end: '2014-06-18',
+            moveable: false
           };
-          var options = {};
-          var network = new Network(container, data, options);
+          var graph2d = new Graph2d(container, dataset, options);
     }
 
 }
