@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Network, Node, Edge, DataSet, IdType, Graph2d } from 'vis';
 import 'vis/dist/vis-timeline-graph2d.min.css';
+import { ProgressTrackService } from '../shared/progress/progressTrack.service';
+import { Score } from '../shared/progress/score';
 
 @Component({
   selector: 'app-progress',
@@ -8,33 +10,57 @@ import 'vis/dist/vis-timeline-graph2d.min.css';
   styleUrls: ['./progress.component.css']
 })
 export class ProgressComponent implements OnInit {
+  private scoreObjs: Score[] = []
+  private items: any[]
+  private counter: number =0
 
-  constructor() { }
-
-  public nodes: Node;
-    public edges: Edge;
-    public network : Network;
+  constructor(private service: ProgressTrackService) { }
 
     public ngOnInit(): void {
 
-      var container = document.getElementById('mynetwork');       
+      this.getProgressData(1);
 
-      var items = [
-        {x: '2014-06-11', y: 10},
-        {x: '2014-06-12', y: 25},
-        {x: '2014-06-13', y: 30},
-        {x: '2014-06-14', y: 10},
-        {x: '2014-06-15', y: 15},
-        {x: '2014-06-16', y: 30}
-      ];
-          
-          var dataset = new DataSet(items);
-          var options = {
-            start: '2014-06-05',
-            end: '2014-06-18',
-            moveable: false
-          };
-          var graph2d = new Graph2d(container, dataset, options);
+    }
+
+    getProgressData(userId: number){
+
+      this.service.getUserProgress(userId).subscribe(obj => {
+        obj.forEach(element => {
+          this.scoreObjs.push(element)
+          console.log("One obj:",element)
+        });
+        console.log("Obj array",this.scoreObjs)})
+      
+        this.scoreObjs.forEach(score => {
+          this.items.push({x: score.date, y: score.tutorial.points})
+          console.log(score)
+        })
+      this.scoreObjs.forEach(function (value){
+        console.log(value.date)
+        this.items.push({x: value.date, y:value.tutorial.points, label: {content: value.tutorial.title}})
+      })
+      console.log(this.items)
+      this.drawGraph()
+
+
+    }
+
+    drawGraph(){
+            var container = document.getElementById('mynetwork');    
+
+      var dataset = new DataSet(this.items);
+      var options = {
+        start: "2019-02-11",
+        end: "2019-02-12",
+        moveable: false,
+        drawPoints: {
+          style: 'square'
+        },
+        shaded: {
+          orientation: 'bottom'
+        }
+      };
+      var graph2d = new Graph2d(container, dataset, options);
     }
 
 }

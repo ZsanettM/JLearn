@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.io.Console;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 class NameUserController{
-    private UserRepository repository;
+    private UserRepository uRepo;
+    private ScoreRepository sRepo;
 
-    public NameUserController(UserRepository rep){
-        this.repository = rep;
+    public NameUserController(UserRepository rep, ScoreRepository rep2){
+        this.uRepo = rep;
+        this.sRepo = rep2;
     }
 
     @Autowired
@@ -44,7 +47,7 @@ class NameUserController{
     @GetMapping("/name-users")
     @CrossOrigin(origins = "http://localhost:4200")
     public User findUser(){
-        return this.repository.findByUsername("John");
+        return this.uRepo.findByUsername("John");
     }
 
     //Log user in (username, password)
@@ -53,13 +56,13 @@ class NameUserController{
         method = {RequestMethod.GET, RequestMethod.POST})
     @CrossOrigin(origins = "http://localhost:4200")
     public User fUser(@RequestBody User u){
-        User checkedUser = this.repository.findByUsername(u.getUsername());
+        User checkedUser = this.uRepo.findByUsername(u.getUsername());
         
         //System.out.println(passwordEncoder().encode(u.getPsw()));
 
         if (BCrypt.checkpw(u.getPsw(), checkedUser.getPsw())){
             System.out.println("Plaintext: "+u.getPsw()+", BCrypt: "+checkedUser.getPsw()+" - match");
-            return this.repository.findByUsername(u.getUsername());
+            return this.uRepo.findByUsername(u.getUsername());
         }
         else { return null; }
         
@@ -74,12 +77,21 @@ class NameUserController{
         User user = new User();
         user.setUsername(u.getUsername());
         user.setPassword(passwordEncoder().encode(u.getPsw()));
-        user.setScore(u.getScore());
-        this.repository.save(user);
+        user.setEmail(u.getEmail());
+        this.uRepo.save(user);
+    }
+
+    //Get User Progress Data
+    @RequestMapping(
+        value = "/getProgress",
+        method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public List<Score> getProgress(@RequestBody int uid){
+        return sRepo.findAllByUid(Long.valueOf(uid));
     }
 
     /* public Collection<User> nameUser(){
-        return repository.findAll().stream()
+        return uRepo.findAll().stream()
                     .filter(this::isName)
                     .collect(Collectors.toList());
     } */

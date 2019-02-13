@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.util.stream.Stream;
 
+import com.sun.tools.javac.util.List;
+
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,18 +16,12 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-/* 	@Bean
-	ApplicationRunner init(UserRepository repository){
+ 	@Bean
+	ApplicationRunner init(ScoreRepository repository){
 		return args -> {
-			Stream.of("Jane", "Joe", "John").forEach(name ->{
-				User user = new User();
-				user.setUsername(name);
-				user.setPassword("psw");
-				repository.save(user);
-			});
-			repository.findAll().forEach(System.out::println);
+			repository.findAllByUid(Long.valueOf(1)).forEach(System.out::println);
 		};
-	} */
+	} 
 
 }
 

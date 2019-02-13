@@ -14,7 +14,7 @@ public class User {
     private Long uid;
     private @NonNull String username;
     private @NonNull String password;
-    private Integer score;
+    private @NonNull String email;
 
     //getters
     public String getUsername(){
@@ -24,8 +24,8 @@ public class User {
         return password;
     }
 
-    public int getScore(){
-        return score;
+    public String getEmail(){
+        return email;
     }
 
     //setters
@@ -37,7 +37,7 @@ public class User {
         this.password = psw;
     }
 
-    public void setScore(int score){
-        this.score = score;
+    public void setEmail(String email){
+        this.email = email;
     }
 }

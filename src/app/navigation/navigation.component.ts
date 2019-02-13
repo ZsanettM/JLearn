@@ -62,7 +62,7 @@ export class NavigationComponent implements OnInit {
   }
 
   onRegister(){
-    this.userService.registerUser(this.rName, this.rPsw, 0);
+    this.userService.registerUser(this.rName, this.rPsw, this.rEmail);
     console.log("register clicked");
   }
 
