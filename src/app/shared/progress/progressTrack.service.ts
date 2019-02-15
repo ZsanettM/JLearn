@@ -16,7 +16,7 @@ export class ProgressTrackService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json'})
     }
 
-    getUserProgress(userId: number): Observable<Score[]> {
-        return this.http.post<Score[]>('//localhost:8080/getProgress', userId, this.httpOptions);
+    getUserProgress(userId: number): Observable<any> {
+        return this.http.post<any>('//localhost:8080/getProgress', userId, this.httpOptions);
     }
 }

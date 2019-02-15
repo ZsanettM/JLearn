@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import java.sql.Date;
+import java.sql.Time;
 
 import lombok.*;
 
@@ -25,6 +26,8 @@ public class Score {
     //private @NonNull Long tid; //tutorial id
     @Basic
     private Date date;
+    @Basic
+    private Time time;
 
     @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="tid", referencedColumnName="tid")

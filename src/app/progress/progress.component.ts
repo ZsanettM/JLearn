@@ -9,10 +9,17 @@ import { Score } from '../shared/progress/score';
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.css']
 })
+
+/*
+interface ReturnedObject {
+  place: number
+  body: Score
+}*/
+
 export class ProgressComponent implements OnInit {
   private scoreObjs: Score[] = []
-  private items: any[]
-  private counter: number =0
+  private items: any[] =[]
+  private currentTime: Date
 
   constructor(private service: ProgressTrackService) { }
 
@@ -25,33 +32,27 @@ export class ProgressComponent implements OnInit {
     getProgressData(userId: number){
 
       this.service.getUserProgress(userId).subscribe(obj => {
+        this.scoreObjs = obj
         obj.forEach(element => {
-          this.scoreObjs.push(element)
-          console.log("One obj:",element)
+
+          this.items.push({x: (element.date+" "+element.time), y:element.tutorial.points, label: {content: element.tutorial.title}})
         });
-        console.log("Obj array",this.scoreObjs)})
-      
-        this.scoreObjs.forEach(score => {
-          this.items.push({x: score.date, y: score.tutorial.points})
-          console.log(score)
-        })
-      this.scoreObjs.forEach(function (value){
-        console.log(value.date)
-        this.items.push({x: value.date, y:value.tutorial.points, label: {content: value.tutorial.title}})
+        this.drawGraph()
       })
-      console.log(this.items)
+
+      console.log("Items: ", this.items.length)
       this.drawGraph()
 
 
     }
 
     drawGraph(){
-            var container = document.getElementById('mynetwork');    
+      var container = document.getElementById('mynetwork');    
 
       var dataset = new DataSet(this.items);
       var options = {
-        start: "2019-02-11",
-        end: "2019-02-12",
+        start: this.scoreObjs[0].date+" "+this.scoreObjs[0].time,
+        end: this.scoreObjs[this.scoreObjs.length-1].date+" "+this.scoreObjs[this.scoreObjs.length-1].time,
         moveable: false,
         drawPoints: {
           style: 'square'
