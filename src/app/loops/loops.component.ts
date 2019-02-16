@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user/user.service';
 import { ProgressTrackService } from '../shared/progress/progressTrack.service';
-import { pathToFileURL } from 'url';
-import { Tutorial } from '../shared/progress/tutorial';
 
 @Component({
   selector: 'app-loops',
@@ -14,13 +12,12 @@ export class LoopsComponent implements OnInit {
   checked: boolean =false;
   scoreEarned: number =30;
   private currentTime: Date;
-  private tutorial: Tutorial
+  private tutorialID: number = 3;
 
   constructor(private userService: UserService, private ptService: ProgressTrackService) { }
 
   ngOnInit() {
     this.checked = Boolean(localStorage.getItem('loopsRead'));
-    console.log(this.tutorial);
   }
 
   onChecked(){
@@ -37,7 +34,7 @@ export class LoopsComponent implements OnInit {
     localStorage.setItem('loopsRead', this.checked.toString());
     if (this.checked){
       //add --> saveChecked()
-      this.ptService.saveChecked(Number(localStorage.getItem("uid")), 3, this.currentTime)
+      this.ptService.saveChecked(Number(localStorage.getItem("uid")), this.tutorialID, this.currentTime)
         .subscribe(data => console.log(data));
       this.userService.updateScore(this.scoreEarned);
     }
