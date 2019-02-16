@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RepositoryRestResource
 @CrossOrigin(origins = "http://localhost:4200")
 interface TutorialRepository extends CrudRepository<Tutorial, Long>{
-    
+
 }

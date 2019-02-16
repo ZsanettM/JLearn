@@ -16,12 +16,12 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
- 	@Bean
+ 	/*@Bean
 	ApplicationRunner init(ScoreRepository repository){
 		return args -> {
 			repository.findAllByUid(Long.valueOf(1)).forEach(System.out::println);
 		};
-	} 
+	} */
 
 }
 

@@ -35,7 +35,7 @@ export class ProgressComponent implements OnInit {
         this.scoreObjs = obj
         obj.forEach(element => {
 
-          this.items.push({x: (element.date+" "+element.time), y:element.tutorial.points, label: {content: element.tutorial.title}})
+          this.items.push({x: (element.timestmp), y:element.tutorial.points, label: {content: element.tutorial.title}})
         });
         this.drawGraph()
       })
@@ -51,8 +51,8 @@ export class ProgressComponent implements OnInit {
 
       var dataset = new DataSet(this.items);
       var options = {
-        start: this.scoreObjs[0].date+" "+this.scoreObjs[0].time,
-        end: this.scoreObjs[this.scoreObjs.length-1].date+" "+this.scoreObjs[this.scoreObjs.length-1].time,
+        start: this.scoreObjs[0].timestmp,
+        end: this.scoreObjs[this.scoreObjs.length-1].timestmp,
         moveable: false,
         drawPoints: {
           style: 'square'
@@ -63,5 +63,6 @@ export class ProgressComponent implements OnInit {
       };
       var graph2d = new Graph2d(container, dataset, options);
     }
+
 
 }

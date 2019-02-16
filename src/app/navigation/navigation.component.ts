@@ -55,6 +55,7 @@ export class NavigationComponent implements OnInit {
           this.user = object;
           localStorage.setItem("userName", this.user.username);
           localStorage.setItem("userScore", this.user.score.toString());
+          localStorage.setItem("uid", this.user.uid.toString())
           localStorage.setItem("authenticated", "true")
           this.showName = true;  
         });   

@@ -19,4 +19,16 @@ export class ProgressTrackService {
     getUserProgress(userId: number): Observable<any> {
         return this.http.post<any>('//localhost:8080/getProgress', userId, this.httpOptions);
     }
+    
+    //save data when user marks a tutorial checked
+    saveChecked(uid: number, tid: number, date: Date){
+        //should return overall score
+      return this.http.post<any>('//localhost:8080/saveProgress', JSON.stringify({uid: uid, tid: tid, date: date}), this.httpOptions);
+    }
+
+    //delete daata when user marks a tutorial unchecked
+    deleteUnChecked(tid: number, uid: number){
+        return this.http.post('//localhost:8080/deleteProgress', JSON.stringify({tid: tid, uid: uid}), this.httpOptions);
+    }
+
 }

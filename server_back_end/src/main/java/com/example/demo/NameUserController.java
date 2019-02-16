@@ -22,10 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 class NameUserController{
     private UserRepository uRepo;
     private ScoreRepository sRepo;
+    private TutorialRepository tRepo;
 
-    public NameUserController(UserRepository rep, ScoreRepository rep2){
+    public NameUserController(UserRepository rep, ScoreRepository rep2, TutorialRepository rep3){
         this.uRepo = rep;
         this.sRepo = rep2;
+        this.tRepo = rep3;
     }
 
     @Autowired
@@ -89,6 +91,38 @@ class NameUserController{
     public List<Score> getProgress(@RequestBody int uid){
         return sRepo.findAllByUid(Long.valueOf(uid));
     }
+
+    //Save User Progress Data
+    @RequestMapping(
+        value="/saveProgress", 
+        method=RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public int saveProgress(@RequestBody Score s) {
+        Score score = new Score();
+        //Tutorial tutorial = this.tRepo.findById(s.tid).get();
+        score.setUId(s.getUId());
+        score.setTutorial(this.tRepo.findById(s.tid).get());
+        score.setDate(s.getDate());
+        this.sRepo.save(score);
+        return 1;
+    }
+
+    //Delete User Progress Date
+    @RequestMapping(value="/deleteProgress", method=RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public void deleteProgress(@RequestBody Score s) {
+        this.sRepo.deleteByTutorialAndUid(this.tRepo.findById(s.tid).get(), s.getUId());
+    }
+    
+
+    //Get Tutorial Info
+    /*@RequestMapping(
+        value="/getTutorial", 
+        method={RequestMethod.GET, RequestMethod.POST})
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Tutorial getTutorial(@RequestBody int id){
+        return this.tRepo.findById((long) id).get();
+    }*/
 
     /* public Collection<User> nameUser(){
         return uRepo.findAll().stream()

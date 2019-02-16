@@ -22,7 +22,8 @@ export class UserService {
   }
 
   registerUser(uname: string, psw: string, email: string) {
-    this.http.post('//localhost:8080/save', JSON.stringify({username: uname, password: psw, email: email}), this.httpOptions).subscribe(data => console.log(data));
+    this.http.post('//localhost:8080/save', JSON.stringify({username: uname, password: psw, email: email}), this.httpOptions)
+      .subscribe(data => console.log(data));
   }
 
   //User Authentication ---------------------------------------------------------
