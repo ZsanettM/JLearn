@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from './user';
+import { Router } from '@angular/router'
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -11,7 +12,7 @@ export class UserService {
   public currentUserObj = this.sharedObj.asObservable();
   public authenticated: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -62,11 +63,9 @@ export class UserService {
   //---------------------------------------------------------------------------------
 
   logout() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userScore");
-    localStorage.removeItem("authenticated")
+    localStorage.clear();
     this.authenticated = false;
+    this.router.navigate(['/home']);
   }
 
   loggedIn(): boolean {
