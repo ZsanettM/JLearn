@@ -31,4 +31,8 @@ export class ProgressTrackService {
         return this.http.post('//localhost:8080/deleteProgress', JSON.stringify({tid: tid, uid: uid}), this.httpOptions);
     }
 
+    //get overall user score based on uid
+    getUserScore(userId: number): Observable<any> {
+        return this.http.post<any>('//localhost:8080/scoreSum', userId, this.httpOptions);
+    }
 }

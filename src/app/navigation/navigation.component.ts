@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../shared/user/user.service';
 import { User } from '../shared/user/user';
+import { ProgressTrackService } from '../shared/progress/progressTrack.service';
 
 @Component({
   selector: 'app-navigation',
@@ -21,7 +22,7 @@ export class NavigationComponent implements OnInit {
   rEmail: string;
   rPsw: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private ptService: ProgressTrackService) { }
 
   ngOnInit() {
     /*this.regForm = new FormGroup({
@@ -29,7 +30,18 @@ export class NavigationComponent implements OnInit {
     });*/
     if (this.userService.loggedIn()) {
       this.user.username = localStorage.getItem("userName");
-      this.user.score = Number(localStorage.getItem("userScore"));
+
+      if(localStorage.getItem("userScore")){
+        this.user.score = Number(localStorage.getItem("userScore"))
+      }
+      else{
+        //in case score has been manually deleted from localStorage
+        this.ptService.getUserScore(this.user.uid)
+          .subscribe(score => {
+            this.user.score = score;
+            localStorage.setItem("userScore", score.toString());
+          }) 
+      }
       this.showName = true;   
     }
     else {
@@ -37,6 +49,7 @@ export class NavigationComponent implements OnInit {
     }
     console.log("The user onInit: ",this.user)
     console.log("JWT onInit(): " + localStorage.getItem('access_token'));
+
   }
 
   logout() {
@@ -48,17 +61,24 @@ export class NavigationComponent implements OnInit {
     console.log("JWT logout(): " + localStorage.getItem('access_token'));
   }
 
+  //login
   onSubmit() {
       //this.userService.assignUserData(this.username, this.password);
       if (this.userService.assignUserData(this.username, this.password)){
         this.userService.currentUserObj.subscribe(object => {
           this.user = object;
           localStorage.setItem("userName", this.user.username);
-          localStorage.setItem("userScore", this.user.score.toString());
           localStorage.setItem("uid", this.user.uid.toString())
           localStorage.setItem("authenticated", "true")
           this.showName = true;  
-        });   
+
+          this.ptService.getUserScore(this.user.uid)
+          .subscribe(score => {
+            this.user.score = score;
+            localStorage.setItem("userScore", score.toString());
+          }) 
+        });  
+
       }
   }
 

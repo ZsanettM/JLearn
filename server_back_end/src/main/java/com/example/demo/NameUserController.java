@@ -117,7 +117,7 @@ class NameUserController{
     //Get SUM(user scores)
     @RequestMapping(value="/scoreSum", method=RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:4200")
-    public Long getScoreSum(@RequestBody int uid) {
+    public int getScoreSum(@RequestBody int uid) {
         return this.sRepo.findByUid((long) uid);
     }
     
