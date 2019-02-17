@@ -12,13 +12,25 @@ export class Tutorial implements OnInit {
   private currentTime: Date;
   public tutorialID: number;
 
-  constructor(private ptService: ProgressTrackService/*tid: number, title: string*/){
-      //this.tutorialID = tid;
-      //this.checkTitle = title;
-    }
+  constructor(private ptService: ProgressTrackService){ }
 
     ngOnInit(){
+      //if checkbox state is already stored in localStorage
+      if (localStorage.getItem(this.checkTitle)){
         this.checked = (localStorage.getItem(this.checkTitle)=='true' ? true : false)
+      } else {
+        //else get state from DB
+        if (localStorage.getItem("uid")){
+          this.ptService.isRead(this.tutorialID,Number(localStorage.getItem("uid")))
+            .subscribe(b => {
+              this.checked = b
+              b == true ? localStorage.setItem(this.checkTitle, 'true') : localStorage.setItem(this.checkTitle, 'false') 
+            })
+        }
+        else {
+          //TODO: msg(Something went wrong, pls log-out and log-in again)
+        }
+      }
     }
 
     onChecked(){
@@ -29,10 +41,10 @@ export class Tutorial implements OnInit {
         localStorage.setItem(this.checkTitle, this.checked.toString());
 
         if (this.checked){
-          //add --> saveChecked()
+          //add ---> saveChecked()
           this.ptService.saveChecked(Number(localStorage.getItem("uid")), this.tutorialID, this.currentTime)
             .subscribe(data => console.log(data));
-          //this.userService.updateScore(this.scoreEarned);
+          
           //get new score
           this.ptService.getUserScore(Number(localStorage.getItem("uid")))
           .subscribe(score => {
@@ -40,10 +52,10 @@ export class Tutorial implements OnInit {
           }) 
         }
         else {
-          //remove -->deleteUnChecked()
+          //remove --->deleteUnChecked()
           this.ptService.deleteUnChecked(this.tutorialID, Number(localStorage.getItem("uid")))
             .subscribe()
-          //this.userService.updateScore(-this.scoreEarned);
+          
           //get new score
           this.ptService.getUserScore(Number(localStorage.getItem("uid")))
           .subscribe(score => {

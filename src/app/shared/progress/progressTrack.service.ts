@@ -35,4 +35,9 @@ export class ProgressTrackService {
     getUserScore(userId: number): Observable<any> {
         return this.http.post<any>('//localhost:8080/scoreSum', userId, this.httpOptions);
     }
+
+    //get checkBox state
+    isRead(tid: number, uid: number){
+        return this.http.post<boolean>('//localhost:8080/tutorialChecked', JSON.stringify({tid: tid, uid: uid}), this.httpOptions);
+    }
 }

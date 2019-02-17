@@ -19,6 +19,9 @@ interface ScoreRepository extends CrudRepository<Score, Long>{
     @Transactional
     void deleteByTutorialAndUid(Tutorial t, Long uid);
 
+    @Transactional
+    Score findByTutorialAndUid(Tutorial t, Long uid);
+
     @Query(value = "SELECT SUM(Tutorial.points) from Tutorial INNER JOIN Score ON Score.tid = Tutorial.tid where Score.uid = :uid", nativeQuery = true)
     int findByUid(@Param("uid") Long uid);
 }

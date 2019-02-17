@@ -121,6 +121,15 @@ class NameUserController{
         return this.sRepo.findByUid((long) uid);
     }
     
+    //Find score entry by tid and uid
+    @RequestMapping(value="/tutorialChecked", method=RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public boolean getScoreEntry(@RequestBody Score s){
+        if(this.sRepo.findByTutorialAndUid(this.tRepo.findById(s.tid).get(), s.getUId()) != null){
+            return true;
+        }        
+        return false;
+    }
 
     //Get Tutorial Info
     /*@RequestMapping(

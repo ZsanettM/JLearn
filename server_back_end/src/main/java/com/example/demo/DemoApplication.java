@@ -16,12 +16,13 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
- 	@Bean
-	ApplicationRunner init(ScoreRepository repository){
+ 	/*@Bean
+	ApplicationRunner init(ScoreRepository repository, TutorialRepository tRepo){
 		return args -> {
-			System.out.print(repository.findByUid((long) 1));
+			if(repository.findByTutorialAndUid(tRepo.findById((long)2).get(), (long)2) != null){System.out.print(true);}
+			else {System.out.print(false);}
 		};
-	} 
+	} */
 
 }
 
