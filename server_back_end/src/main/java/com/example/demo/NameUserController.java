@@ -99,7 +99,6 @@ class NameUserController{
     @CrossOrigin(origins = "http://localhost:4200")
     public int saveProgress(@RequestBody Score s) {
         Score score = new Score();
-        //Tutorial tutorial = this.tRepo.findById(s.tid).get();
         score.setUId(s.getUId());
         score.setTutorial(this.tRepo.findById(s.tid).get());
         score.setDate(s.getDate());
@@ -112,6 +111,14 @@ class NameUserController{
     @CrossOrigin(origins = "http://localhost:4200")
     public void deleteProgress(@RequestBody Score s) {
         this.sRepo.deleteByTutorialAndUid(this.tRepo.findById(s.tid).get(), s.getUId());
+    }
+    
+
+    //Get SUM(user scores)
+    @RequestMapping(value="/scoreSum", method=RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Long getScoreSum(@RequestBody int uid) {
+        return this.sRepo.findByUid((long) uid);
     }
     
 

@@ -17,10 +17,11 @@ export class SimpleAppsComponent implements OnInit {
   constructor(private userService: UserService, private ptService: ProgressTrackService) { }
 
   ngOnInit() {
-    this.checked = Boolean(localStorage.getItem('simpleRead'));
+    this.checked = (localStorage.getItem('simpleRead')=='true' ? true : false)
   }
 
   onChecked(){
+    console.log(this.tutorialID, "onChecked")
     /*this.checked = !this.checked;
     localStorage.setItem('simpleRead', this.checked.toString());
     if (this.checked){this.userService.updateScore(this.scoreEarned);}
@@ -39,7 +40,7 @@ export class SimpleAppsComponent implements OnInit {
     }
     else {
       //remove -->deleteUnChecked()
-      this.ptService.deleteUnChecked(3, Number(localStorage.getItem("uid")))
+      this.ptService.deleteUnChecked(this.tutorialID, Number(localStorage.getItem("uid")))
         .subscribe()
       this.userService.updateScore(-this.scoreEarned);
     }

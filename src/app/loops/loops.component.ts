@@ -17,7 +17,7 @@ export class LoopsComponent implements OnInit {
   constructor(private userService: UserService, private ptService: ProgressTrackService) { }
 
   ngOnInit() {
-    this.checked = Boolean(localStorage.getItem('loopsRead'));
+    this.checked = (localStorage.getItem('floopsRead')=='true' ? true : false)
   }
 
   onChecked(){
@@ -40,7 +40,7 @@ export class LoopsComponent implements OnInit {
     }
     else {
       //remove -->deleteUnChecked()
-      this.ptService.deleteUnChecked(3, Number(localStorage.getItem("uid")))
+      this.ptService.deleteUnChecked(this.tutorialID, Number(localStorage.getItem("uid")))
         .subscribe()
       this.userService.updateScore(-this.scoreEarned);
     }
