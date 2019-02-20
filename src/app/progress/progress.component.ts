@@ -3,6 +3,7 @@ import { Network, Node, Edge, DataSet, IdType, Graph2d } from 'vis';
 import 'vis/dist/vis-timeline-graph2d.min.css';
 import { ProgressTrackService } from '../shared/progress/progressTrack.service';
 import { Score } from '../shared/progress/score';
+import { count } from 'rxjs/operators';
 
 @Component({
   selector: 'app-progress',
@@ -20,6 +21,8 @@ export class ProgressComponent implements OnInit {
   private scoreObjs: Score[] = []
   private items: any[] =[]
   private currentTime: Date
+  private tempTimeForEnd: Date
+  private counter: number = 0
 
   constructor(private service: ProgressTrackService) { }
 
@@ -36,23 +39,29 @@ export class ProgressComponent implements OnInit {
         obj.forEach(element => {
 
           this.items.push({x: (element.timestmp), y:element.tutorial.points, label: {content: element.tutorial.title}})
+          console.log("Items #: ", this.items[this.counter])
+          this.counter++
         });
         this.drawGraph()
       })
 
-      console.log("Items: ", this.items.length)
-      this.drawGraph()
+      
+      //this.drawGraph()
 
 
     }
 
     drawGraph(){
-      var container = document.getElementById('mynetwork');    
+      var container = document.getElementById('mynetwork');   
+      
+      this.tempTimeForEnd = new Date(this.scoreObjs[this.scoreObjs.length-1].timestmp)
+      this.tempTimeForEnd.setDate( this.tempTimeForEnd.getDate() + 1)
+      console.log(this.tempTimeForEnd)
 
       var dataset = new DataSet(this.items);
       var options = {
         start: this.scoreObjs[0].timestmp,
-        end: this.scoreObjs[this.scoreObjs.length-1].timestmp,
+        end: this.tempTimeForEnd,
         moveable: false,
         drawPoints: {
           style: 'square'

@@ -31,11 +31,7 @@ public class Score {
     @Id @GeneratedValue
     private Long sid;
     private @NonNull Long uid; //user id
-    //private @NonNull Long tid; //tutorial id
-   /* @Basic
-    private Date date;
-    @Basic
-    private Time time;*/
+
     @Basic
     private Timestamp timestmp;
 
