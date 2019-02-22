@@ -46,27 +46,28 @@ export class Tutorial implements OnInit {
         if (this.checked){
           //add ---> saveChecked()
           this.ptService.saveChecked(Number(localStorage.getItem("uid")), this.tutorialID, this.currentTime)
-             .subscribe(data =>  console.log(data));
-
-
+             .subscribe(data =>  {
+                //get new score
+                this.ptService.getUserScore(Number(localStorage.getItem("uid")))
+                .subscribe(score => {
+                  localStorage.setItem("userScore", score.toString());
+                }) 
+             });
           
-          
-          //get new score
-          this.ptService.getUserScore(Number(localStorage.getItem("uid")))
-          .subscribe(score => {
-            localStorage.setItem("userScore", score.toString());
-          }) 
+
         }
         else {
           //remove --->deleteUnChecked()
           this.ptService.deleteUnChecked(this.tutorialID, Number(localStorage.getItem("uid")))
-            .subscribe()
+            .subscribe(data =>{
+              //get new score
+              this.ptService.getUserScore(Number(localStorage.getItem("uid")))
+              .subscribe(score => {
+                localStorage.setItem("userScore", score.toString());
+              }) 
+            })
           
-          //get new score
-          this.ptService.getUserScore(Number(localStorage.getItem("uid")))
-          .subscribe(score => {
-            localStorage.setItem("userScore", score.toString());
-          }) 
+
         }
       }
 }

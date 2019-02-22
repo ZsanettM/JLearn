@@ -12,8 +12,8 @@ export class FunctionsComponent extends Tutorial {
 
   checkTitle = 'functionsRead'
   tutorialID = 4
-  //tutorialLevel: number = 2
-  //tutorialTitle: string = "Functions"
-  //tutorialPoints: number = 40
+  tutorialLevel: number = 2
+  tutorialTitle: string = "Functions"
+  tutorialPoints: number = 45
 
 }
