@@ -9,4 +9,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "http://localhost:4200")
 interface TutorialRepository extends CrudRepository<Tutorial, Long>{
 
+    Tutorial findByTitle(String tTitle);
 }

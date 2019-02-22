@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 public class Tutorial {
 
-    @Id
+    @Id @GeneratedValue
     private @NonNull Long tid;
     private @NonNull String title;
     private @NonNull int level;

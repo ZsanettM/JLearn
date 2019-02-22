@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -63,7 +64,7 @@ class NameUserController{
         //System.out.println(passwordEncoder().encode(u.getPsw()));
 
         if (BCrypt.checkpw(u.getPsw(), checkedUser.getPsw())){
-            System.out.println("Plaintext: "+u.getPsw()+", BCrypt: "+checkedUser.getPsw()+" - match");
+            System.out.println("Plaintext: "+u.getPsw()+", PlainHash: "+ passwordEncoder().encode(u.getPsw()) +"BCrypt: "+checkedUser.getPsw()+" - match");
             return this.uRepo.findByUsername(u.getUsername());
         }
         else { return null; }
@@ -130,6 +131,29 @@ class NameUserController{
         }        
         return false;
     }
+
+    //Get tutorial by name
+    @RequestMapping(value="/getTutorial", method=RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public boolean checkIfExists_t(@RequestBody String tTitle) {
+        if(tRepo.findByTitle(tTitle) != null){
+            return true;
+        }
+        return false;
+    }
+
+    //Add tutorial info
+    @RequestMapping(value="/saveTutorial", method=RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Long saveTutorial(@RequestBody Tutorial t) {
+        Tutorial tutorial = new Tutorial();
+        tutorial.setLevel(t.getLevel());
+        tutorial.setPoints(t.getPoints());
+        tutorial.setTitle(t.getTitle());
+        tRepo.save(tutorial);
+        return tutorial.getId();
+    }
+    
 
     //Get Tutorial Info
     /*@RequestMapping(

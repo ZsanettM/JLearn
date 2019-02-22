@@ -11,6 +11,9 @@ export class Tutorial implements OnInit {
   public checkTitle: string;
   private currentTime: Date;
   public tutorialID: number;
+  public tutorialLevel: number;
+  public tutorialTitle: string;
+  public tutorialPoints: number;
 
   constructor(private ptService: ProgressTrackService){ }
 
@@ -43,7 +46,10 @@ export class Tutorial implements OnInit {
         if (this.checked){
           //add ---> saveChecked()
           this.ptService.saveChecked(Number(localStorage.getItem("uid")), this.tutorialID, this.currentTime)
-            .subscribe(data => console.log(data));
+             .subscribe(data =>  console.log(data));
+
+
+          
           
           //get new score
           this.ptService.getUserScore(Number(localStorage.getItem("uid")))

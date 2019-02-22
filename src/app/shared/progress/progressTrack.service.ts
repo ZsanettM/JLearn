@@ -40,4 +40,14 @@ export class ProgressTrackService {
     isRead(tid: number, uid: number){
         return this.http.post<boolean>('//localhost:8080/tutorialChecked', JSON.stringify({tid: tid, uid: uid}), this.httpOptions);
     }
+
+    //save tutorial
+    saveTutorial(tTitle: string, tLevel: number, tPoints: number){
+        return this.http.post<number>('//localhost:8080/saveTutorial', JSON.stringify({title: tTitle, level: tLevel, points: tPoints}), this.httpOptions);
+    }
+
+    //check if tutorial exists
+    getTutorialBool(tTitle: string){
+       return this.http.post<boolean>('//localhost:8080/getTutorial', JSON.stringify({title: tTitle}), this.httpOptions);
+    }
 }

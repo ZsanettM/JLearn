@@ -23,11 +23,16 @@ export class ProgressComponent implements OnInit {
   private currentTime: Date
   private tempTimeForEnd: Date
   private counter: number = 0
+  private uName: string; private uScore: number;
 
   constructor(private service: ProgressTrackService) { }
 
     public ngOnInit(): void {
+      //get values from localStorage
+      this.uName = localStorage.getItem("userName")
+      this.uScore = Number(localStorage.getItem("userScore"))
 
+      //get scores from DB
       this.getProgressData(1);
 
     }
@@ -37,10 +42,11 @@ export class ProgressComponent implements OnInit {
       this.service.getUserProgress(userId).subscribe(obj => {
         this.scoreObjs = obj
         obj.forEach(element => {
+          this.counter += element.tutorial.points
 
-          this.items.push({x: (element.timestmp), y:element.tutorial.points, label: {content: element.tutorial.title}})
-          console.log("Items #: ", this.items[this.counter])
-          this.counter++
+          this.items.push({x: (element.timestmp), y:this.counter, label: {content: element.tutorial.title}})
+          //console.log("Items #: ", this.items[this.counter])
+          //this.counter++
         });
         this.drawGraph()
       })
@@ -64,7 +70,7 @@ export class ProgressComponent implements OnInit {
         end: this.tempTimeForEnd,
         moveable: false,
         drawPoints: {
-          style: 'square'
+          style: 'square' // square not working
         },
         shaded: {
           orientation: 'bottom'

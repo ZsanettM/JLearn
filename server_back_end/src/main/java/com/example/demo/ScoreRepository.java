@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "http://localhost:4200")
 interface ScoreRepository extends CrudRepository<Score, Long>{
 
-    //ORDER BY date?
     List<Score> findAllByUidOrderByTimestmp(Long id);
 
     @Transactional
