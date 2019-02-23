@@ -22,6 +22,8 @@ export class ProgressComponent implements OnInit{
 
   @ViewChild('lbCanvas') canvas: ElementRef;
   public context: CanvasRenderingContext2D;
+  private lbScores: any[]= []
+  private lbNames: any[] = []
 
   constructor(private service: ProgressTrackService, private cd: ChangeDetectorRef) {
    }
@@ -49,6 +51,14 @@ export class ProgressComponent implements OnInit{
           //this.counter++
         });
         this.drawGraph()
+      })
+
+      this.service.getTopScores().subscribe(result =>{
+        result.forEach(element => {
+          this.lbScores.push(element[0]);
+          this.lbNames.push(element[1]);
+        });
+
       })
     }
 
@@ -88,20 +98,11 @@ export class ProgressComponent implements OnInit{
       var leaderBoard = new Chart(this.context, {
         type: 'bar',
         data: {
-          labels: ["Red", "Blue", "Yellow"],
+          labels: this.lbNames,
           datasets: [{
             label: 'Top Scores',
-            data: [150, 135, 99],
-            backgoundColor:[
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)'
-            ],
+            data: this.lbScores,
+            borderColor: ['#3cba9f', '#ffcc00', '#4cba9f'],
             borderWidth: 1
           }]
         },

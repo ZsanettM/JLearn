@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.io.Console;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -154,6 +155,17 @@ class NameUserController{
         return tutorial.getId();
     }
     
+    //Get top 10 users
+    @RequestMapping(value="/leaderBoard")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public List<Object> getTop(){
+        return sRepo.findAllTop();
+       /* HashMap<Integer,String> map = new HashMap<>();
+        List<Object[]> result = sRepo.findAllTop();
+       for (Object[] em: result ) {
+           map.put(em[0], em[1]);
+       }*/
+    }
 
     //Get Tutorial Info
     /*@RequestMapping(

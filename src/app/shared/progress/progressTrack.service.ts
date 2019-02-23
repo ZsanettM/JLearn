@@ -50,4 +50,9 @@ export class ProgressTrackService {
     getTutorialBool(tTitle: string){
        return this.http.post<boolean>('//localhost:8080/getTutorial', JSON.stringify({title: tTitle}), this.httpOptions);
     }
+
+    //get leaderboard data
+    getTopScores(){
+        return this.http.get<any[]>('//localhost:8080/leaderBoard', this.httpOptions);
+    }
 }
