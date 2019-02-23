@@ -1,6 +1,6 @@
 #mynetwork{
-   /* width: 99vw;
-    height: 90vh;*/
+   /* width: 99vw;*/
+    height: 400px;
     fill: #0df200;
 }
 .row{
@@ -19,4 +19,15 @@ img:hover {
 }
 .card{
   text-align: center;
+  height: 100%
+}
+.btn-group{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  width: 20%;
+  display: block
+}
+#lbcanvas{
+  height: 400px;
 }
