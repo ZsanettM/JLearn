@@ -10,10 +10,8 @@ import { Tutorial } from '../tutorial';
 })
 export class FunctionsComponent extends Tutorial {
 
+  private link = ""
   checkTitle = 'functionsRead'
   tutorialID = 4
-  tutorialLevel: number = 2
-  tutorialTitle: string = "Functions"
-  tutorialPoints: number = 45
 
 }
