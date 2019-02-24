@@ -64,8 +64,9 @@ export class NavigationComponent implements OnInit {
   //login
   onSubmit() {
       //this.userService.assignUserData(this.username, this.password);
-      if (this.userService.assignUserData(this.username, this.password)){
-        this.userService.currentUserObj.subscribe(object => {
+      this.userService.checkUser(this.username, this.password)
+      .subscribe(object => {
+        if(object){
           this.user = object;
           localStorage.setItem("userName", this.user.username);
           localStorage.setItem("uid", this.user.uid.toString())
@@ -77,9 +78,10 @@ export class NavigationComponent implements OnInit {
             this.user.score = score;
             localStorage.setItem("userScore", score.toString());
           }) 
-        });  
+        }
+      });  
 
-      }
+      
   }
 
   onRegister(){
