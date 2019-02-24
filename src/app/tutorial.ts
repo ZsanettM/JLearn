@@ -1,6 +1,10 @@
-import { Component, OnInit, Directive } from '@angular/core';
+import { Component, OnInit, Directive, ChangeDetectorRef } from '@angular/core';
 import { UserService } from './shared/user/user.service';
 import { ProgressTrackService } from './shared/progress/progressTrack.service';
+import { Pipe, PipeTransform} from '@angular/core';
+import { DomSanitizer } from "@angular/platform-browser";
+
+@Pipe({ name: "safe" })
 
 @Component({
     template:''
@@ -15,9 +19,14 @@ export class Tutorial implements OnInit {
   public tutorialTitle: string;
   public tutorialPoints: number;
 
-  constructor(private ptService: ProgressTrackService){ }
-
+  constructor(private ptService: ProgressTrackService, public sanitizer: DomSanitizer, private cd: ChangeDetectorRef){ }
+/*
+  transform(url: string, section: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url + section);
+  }
+*/
     ngOnInit(){
+      this.cd.detectChanges();
       //if checkbox state is already stored in localStorage
       if (localStorage.getItem(this.checkTitle)){
         this.checked = (localStorage.getItem(this.checkTitle)=='true' ? true : false)

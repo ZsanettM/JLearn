@@ -10,6 +10,7 @@ import { Tutorial } from '../tutorial';
 })
 export class LoopsComponent extends Tutorial{
 
+  private link = "#"
   checkTitle = 'loopsRead'
   tutorialID = 3
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../shared/user/user.service';
 import { User } from '../shared/user/user';
@@ -23,12 +23,10 @@ export class NavigationComponent implements OnInit {
   rPsw: string;
   @ViewChild('loginForm') loginForm: FormControl 
 
-  constructor(private userService: UserService, private ptService: ProgressTrackService) { }
+  constructor(private userService: UserService, private ptService: ProgressTrackService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    /*this.regForm = new FormGroup({
-      'rPsw': new FormControl(this.rPsw, Validators.pattern('([a-z]+[A-Z]+[0-9]+)'))
-    });*/
+    this.cd.detectChanges();
     if (this.userService.loggedIn()) {
       this.user.username = localStorage.getItem("userName");
 

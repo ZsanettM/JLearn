@@ -7,7 +7,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="link = '#while'">
             <mat-panel-title>
               While Loops
             </mat-panel-title>
@@ -45,7 +45,7 @@
         </mat-expansion-panel>
 
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="link = '#for'">
             <mat-panel-title>
               For Loops
             </mat-panel-title>
@@ -64,7 +64,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="link = '#boolean'">
             <mat-panel-title>
                 Boolean Expressions
             </mat-panel-title>
@@ -130,7 +130,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="link = '#conditional'">
             <mat-panel-title>
                 Conditional Statements
             </mat-panel-title>
@@ -226,7 +226,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="link = '#exercise'">
             <mat-panel-title>
                 Indentation
             </mat-panel-title>
@@ -272,6 +272,6 @@
     </div>
   </div>
   <div class="col-md-6 padding-0">
-    <iframe src="http://localhost:8888/notebooks/PythonLoops.ipynb"></iframe>
+    <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl('http://localhost:8888/notebooks/PythonLoops.ipynb'+ link)"></iframe>
   </div>
 </div>

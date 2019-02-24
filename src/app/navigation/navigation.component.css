@@ -27,3 +27,10 @@
 .log{
   cursor: alias;
 }
+
+#progressLink{
+  text-decoration: underline;
+}
+#progressLink:hover{
+  cursor: pointer;
+}

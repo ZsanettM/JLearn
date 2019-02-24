@@ -10,6 +10,7 @@ import { Tutorial } from '../tutorial';
 })
 export class VariablesComponent extends Tutorial{
 
+  private link = "#"
   checkTitle = 'variablesRead'
   tutorialID = 2
   

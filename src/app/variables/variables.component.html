@@ -83,6 +83,6 @@
     </div>
   </div>
   <div class="col-md-6 padding-0">
-      <iframe src="http://localhost:8888/notebooks/Variables.ipynb"></iframe>
+      <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl('http://localhost:8888/notebooks/Variables.ipynb'+ link)"></iframe>
     </div>
 </div>

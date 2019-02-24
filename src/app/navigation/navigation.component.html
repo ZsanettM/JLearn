@@ -22,7 +22,7 @@
           </div>
         </li>
         <li class="nav-item">
-        <a class="nav-item nav-link" routerLink="progress" routerLinkActive="active">
+        <a class="nav-item nav-link"> <!--routerLink="progress" routerLinkActive="active"-->
           <img src="/assets/brainteasers.png" width="40" height="40" alt="">Brain Teasers</a>
         </li>
       </ul>
@@ -32,15 +32,16 @@
       <!-- Trigger modal -->
 
         <li class="nav-item">
-          <a class="nav-item nav-link navAlign">
-              Hello {{user.username}} ! 
-          </a>
+          <span class="nav-item nav-link navAlign">
+              Hello <span id="progressLink" routerLink="progress" routerLinkActive="active">{{user.username}}! </span>
+          </span>
         </li>
+        <!--
         <li class="nav-item">
           <a class="nav-item nav-link navAlign">
                pts {{user.score}}
           </a>
-        </li>
+        </li>-->
         <li class="nav-item">
             <a class="nav-item nav-link log" (click)="logout()">
                 <img src="/assets/log-out.png" width="40" height="40" alt="">Logout
