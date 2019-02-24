@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../shared/user/user.service';
 import { User } from '../shared/user/user';
@@ -11,9 +11,9 @@ import { ProgressTrackService } from '../shared/progress/progressTrack.service';
 })
 export class NavigationComponent implements OnInit {
   user: User = new User()
-  showName: boolean
-  username: string
-  password: string
+  showName: boolean;
+  username: string;
+  password: string;
   score: number;
 
   //registration form elements
@@ -21,6 +21,7 @@ export class NavigationComponent implements OnInit {
   rName: string;
   rEmail: string;
   rPsw: string;
+  @ViewChild('loginForm') loginForm: FormControl 
 
   constructor(private userService: UserService, private ptService: ProgressTrackService) { }
 
@@ -58,6 +59,7 @@ export class NavigationComponent implements OnInit {
     this.user = null;
     this.username = '';
     this.password = '';
+    this.loginForm.reset();
     console.log("JWT logout(): " + localStorage.getItem('access_token'));
   }
 
