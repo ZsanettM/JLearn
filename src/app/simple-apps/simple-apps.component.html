@@ -7,7 +7,7 @@
       
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="newLink(url, '#hello')">
             <mat-panel-title>
               Start Here!
             </mat-panel-title>
@@ -17,16 +17,16 @@
             <pre><code>{{"
             >>> print ('Hello, world!'')
             "}}</code></pre>
+
+            <p class="instruction">Try to insert a new cell into the notebook on the right and enter the example code! Then press run:
+            It will immediately compile whatever you have typed in. This is useful for testing things, e.g., defining a few variables, and then testing to see if a certain line will work. 
+             <br>
+             <em> Don't type the <code>>>></code> part!</em>
+            </p>
             
             <p>What happened? You just created a program, that prints the words 'Hello, world!'.</p>
             <p>Note that in Python 2 the parentheses are optional after print, but in Python 3.0 they are required. </p>
-            
-            <p class="instruction">Try to insert a new cell into the notebook on the right and enter the example code! Then press run:
-            It will immediately compile whatever you have typed in. This is useful for testing things, e.g., defining a few variables, and then testing to see if a certain line will work. 
-            <br>
-            <em> Don't type the <code>>>></code> part!</em>
-            </p>
-    
+                
             <p>You can find some basic calculations already added to the notebook. These are the basic commands of Python, and what they do.</p>
             <p> 
             Here is a table to clarify them:
@@ -78,6 +78,8 @@
                   <td>16</td>
               </tbody>
             </table>
+          
+            <p class="instruction" (click)="newLink(url, '#maths')"> Go ahead and look at some maths examples and comments.</p>
         </mat-expansion-panel>
       </mat-accordion>
 
@@ -93,6 +95,6 @@
   </div>
 
   <div class="col-md-6 padding-0">
-      <iframe src="http://localhost:8888/notebooks/SimplePrograms.ipynb"></iframe>
+      <iframe [src]="link"></iframe>
   </div>
 </div>

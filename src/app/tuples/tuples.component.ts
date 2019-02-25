@@ -10,9 +10,8 @@ import { Tutorial } from '../tutorial';
 })
 export class TuplesComponent extends Tutorial {
 
+  url = 'http://localhost:8888/notebooks/Tuples,lists.ipynb'
   checkTitle = 'tuplesRead'
   tutorialID = 5
-  tutorialLevel: number = 2
-  tutorialTitle: string = "Tuples, Lists & Dicts."
-  tutorialPoints: number = 45
+
 }

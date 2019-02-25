@@ -108,7 +108,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="newLink(url, '#lists')">
             <mat-panel-title>
               Lists
             </mat-panel-title>
@@ -122,7 +122,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="newLink(url, '#dictionaries')">
             <mat-panel-title>
                 Dictionaries
             </mat-panel-title>
@@ -147,6 +147,6 @@
     </div>
   </div>
   <div class="col-md-6 padding-0">
-      <iframe src="http://localhost:8888/notebooks/Tuples,lists.ipynb"></iframe>
+      <iframe [src]="link"></iframe>
     </div>
 </div>

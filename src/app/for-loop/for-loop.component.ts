@@ -10,9 +10,7 @@ import { Tutorial } from '../tutorial';
 })
 export class ForLoopComponent extends Tutorial {
   
+  url= 'http://localhost:8888/notebooks/ForLoop.ipynb'
   checkTitle = 'forloopsRead'
   tutorialID = 6
-  tutorialLevel: number = 2
-  tutorialTitle: string = "For loops"
-  tutorialPoints: number = 55
 }

@@ -19,14 +19,23 @@ export class Tutorial implements OnInit {
   public tutorialTitle: string;
   public tutorialPoints: number;
 
+  public link: any
+  public url = ""
+
   constructor(private ptService: ProgressTrackService, public sanitizer: DomSanitizer, private cd: ChangeDetectorRef){ }
 /*
   transform(url: string, section: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url + section);
   }
 */
+newLink(url: string, id: string){
+  this.cd.detectChanges();
+  this.link = this.sanitizer.bypassSecurityTrustResourceUrl(url+ id)
+}
     ngOnInit(){
-      this.cd.detectChanges();
+      this.newLink(this.url, '')
+
+      //this.cd.detectChanges();
       //if checkbox state is already stored in localStorage
       if (localStorage.getItem(this.checkTitle)){
         this.checked = (localStorage.getItem(this.checkTitle)=='true' ? true : false)

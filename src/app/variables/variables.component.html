@@ -29,7 +29,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="newLink(url, '#variables')">
             <mat-panel-title>
               Variables
             </mat-panel-title>
@@ -83,6 +83,6 @@
     </div>
   </div>
   <div class="col-md-6 padding-0">
-      <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl('http://localhost:8888/notebooks/Variables.ipynb'+ link)"></iframe>
+      <iframe [src]="link"></iframe>
     </div>
 </div>

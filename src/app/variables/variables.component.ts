@@ -10,7 +10,7 @@ import { Tutorial } from '../tutorial';
 })
 export class VariablesComponent extends Tutorial{
 
-  private link = "#"
+  url = 'http://localhost:8888/notebooks/Variables.ipynb'
   checkTitle = 'variablesRead'
   tutorialID = 2
   

@@ -10,6 +10,7 @@ import { Tutorial } from '../tutorial';
 })
 export class SimpleAppsComponent extends Tutorial {
 
+  url ='http://localhost:8888/notebooks/SimplePrograms.ipynb'
   checkTitle = 'simpleRead'
   tutorialID = 1
 

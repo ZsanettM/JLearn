@@ -10,7 +10,7 @@ import { Tutorial } from '../tutorial';
 })
 export class LoopsComponent extends Tutorial{
 
-  private link = "#"
+  url = 'http://localhost:8888/notebooks/PythonLoops.ipynb'
   checkTitle = 'loopsRead'
   tutorialID = 3
 

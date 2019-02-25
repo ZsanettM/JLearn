@@ -7,7 +7,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header (click)="link = '#usingAFunction'">
+          <mat-expansion-panel-header (click)="newLink(url,'#usingAFunction')">
             <mat-panel-title>
               Using a function
             </mat-panel-title>
@@ -56,7 +56,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header (click)="link = '#egCalc'">
+          <mat-expansion-panel-header (click)="newLink(url,'#egCalc')">
             <mat-panel-title>
                 A Calculator Program
             </mat-panel-title>
@@ -170,7 +170,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header (click)="link = '#egParam'">
+          <mat-expansion-panel-header (click)="newLink(url, '#egParam')">
             <mat-panel-title>
                 Passing Parameters to Functions
             </mat-panel-title>
@@ -204,7 +204,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header (click)="link = '#final'">
+          <mat-expansion-panel-header (click)="newLink(url, '#final')">
             <mat-panel-title>
                 The Final Calculator Program
             </mat-panel-title>
@@ -229,6 +229,6 @@
   </div>
 
   <div class="col-md-6 padding-0">
-      <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl('http://localhost:8888/notebooks/Functions.ipynb'+ link)"></iframe>
+      <iframe [src]="link"></iframe>
   </div>
 </div>

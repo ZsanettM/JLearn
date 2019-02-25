@@ -6,7 +6,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="newLink(url, '#for')">
             <mat-panel-title>
                 Looping through a range
             </mat-panel-title>
@@ -82,7 +82,7 @@
 
       <mat-accordion>
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header (click)="newLink(url, '#game')">
             <mat-panel-title>
                 Our First 'Game'
             </mat-panel-title>
@@ -133,6 +133,6 @@
   </div>
 
   <div class="col-md-6 padding-0">
-      <iframe src="http://localhost:8888/notebooks/ForLoop.ipynb"></iframe>
+      <iframe [src]="link"></iframe>
   </div>
 </div>
