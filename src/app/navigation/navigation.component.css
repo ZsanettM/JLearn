@@ -34,3 +34,8 @@
 #progressLink:hover{
   cursor: pointer;
 }
+.avatar{
+  width: 20%;
+  border-radius: 50%;
+  border: 1px solid rgb(112, 112, 112);
+}

@@ -15,6 +15,7 @@ public class User {
     private @NonNull String username;
     private @NonNull String password;
     private @NonNull String email;
+    private String avatar;
 
     //getters
     public String getUsername(){
@@ -26,6 +27,9 @@ public class User {
 
     public String getEmail(){
         return email;
+    }
+    public String getAvatar(){
+        return avatar;
     }
 
     //setters
@@ -39,5 +43,8 @@ public class User {
 
     public void setEmail(String email){
         this.email = email;
+    }
+    public void setAvatar(String avatar){
+        this.avatar = avatar;
     }
 }
