@@ -10,7 +10,9 @@ import { VariablesComponent } from './variables/variables.component';
 import { TuplesComponent } from './tuples/tuples.component';
 import { ForLoopComponent } from './for-loop/for-loop.component'
 import { ProgressComponent } from './progress/progress.component';
+import { ExercisesComponent } from './exercises/exercises.component';
 import { AuthGuardService } from './shared/auth-guard.service';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +22,7 @@ const routes: Routes = [
   { path: 'variables', component: VariablesComponent, canActivate: [AuthGuardService]},
   { path: 'tuples', component: TuplesComponent, canActivate: [AuthGuardService]},
   { path: 'forLoops', component: ForLoopComponent, canActivate: [AuthGuardService]},
+  { path: 'exercises', component: ExercisesComponent, canActivate: [AuthGuardService]},
   { path: 'progress', component: ProgressComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }

@@ -24,6 +24,7 @@ import { ModulesComponent } from './modules/modules.component';
 import { FilesComponent } from './files/files.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Tutorial } from './shared/progress/tutorial';
+import { ExercisesComponent } from './exercises/exercises.component';
 
 //The UI components are declarations
 @NgModule({
@@ -42,7 +43,8 @@ import { Tutorial } from './shared/progress/tutorial';
     ModulesComponent,
     FilesComponent,
     ExceptionsComponent,
-    ProgressComponent
+    ProgressComponent,
+    ExercisesComponent
   ],
   imports: [
     BrowserModule,

@@ -55,4 +55,6 @@ export class ProgressTrackService {
     getTopScores(){
         return this.http.get<any[]>('//localhost:8080/leaderBoard', this.httpOptions);
     }
+
+
 }
