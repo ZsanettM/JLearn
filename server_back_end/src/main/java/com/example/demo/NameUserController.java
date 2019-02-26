@@ -77,12 +77,18 @@ class NameUserController{
         value = "/save",
         method = RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:4200")
-    public void saveUser(@RequestBody User u){
+    public boolean saveUser(@RequestBody User u){
         User user = new User();
         user.setUsername(u.getUsername());
         user.setPassword(passwordEncoder().encode(u.getPsw()));
         user.setEmail(u.getEmail());
+        user.setAvatar(u.getAvatar());
+        try{
         this.uRepo.save(user);
+        return true;
+        } catch(Exception e) {
+            return false;
+        }
     }
 
     //Get User Progress Data

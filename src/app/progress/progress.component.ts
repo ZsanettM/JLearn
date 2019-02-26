@@ -18,7 +18,8 @@ export class ProgressComponent implements OnInit{
   private tempTimeForEnd: Date
   private counter: number = 0
 
-  private uName: string; private uScore: number; private uId:number; private defaultScreen: boolean = true;
+  private uName: string; private uScore: number; private uId: number; private uImg: string;
+  private defaultScreen: boolean = true;
 
   @ViewChild('lbCanvas') canvas: ElementRef;
   public context: CanvasRenderingContext2D;
@@ -33,6 +34,7 @@ export class ProgressComponent implements OnInit{
       this.uName = localStorage.getItem("userName")
       this.uScore = Number(localStorage.getItem("userScore"))
       this.uId = Number(localStorage.getItem("uid"))
+      this.uImg = localStorage.getItem("image")
 
       //get scores from DB
       this.getProgressData();

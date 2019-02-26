@@ -166,8 +166,10 @@
 
                 <label for="rbg"><strong>Choose an avatar:</strong></label>
                 <div id="rbg" class="input-group">
-                  <input id="imgCheckF" type="radio" class="form-control radio" name="imgCheck" required value="girl"><img class="avatar" src="../../assets/katie.png">
-                  <input id="imgCheckM" type="radio" class="form-control radio" name="imgCheck" required value="boy"><img class="avatar" src="../../assets/bughunt.png">
+                  <input id="imgCheckF" type="radio" class="form-control radio" name="imgCheck" value="girl" [(ngModel)]="radioBtn">
+                    <img class="avatar" src="../../assets/katie.png">
+                  <input id="imgCheckM" type="radio" class="form-control radio" name="imgCheck" value="boy" checked [(ngModel)]="radioBtn">(default)
+                    <img class="avatar" src="../../assets/bughunt.png">
                 </div>
 
               {{rPsw}}

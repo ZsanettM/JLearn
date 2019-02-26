@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../shared/user/user.service';
 import { User } from '../shared/user/user';
 import { ProgressTrackService } from '../shared/progress/progressTrack.service';
+import { stringify } from '@angular/core/src/render3/util';
 
 @Component({
   selector: 'app-navigation',
@@ -15,12 +16,15 @@ export class NavigationComponent implements OnInit {
   username: string;
   password: string;
   score: number;
+  firstLogin: Boolean =false;
 
   //registration form elements
   regForm: FormGroup;
   rName: string;
   rEmail: string;
   rPsw: string;
+  radioBtn: string;
+  img: string;
   @ViewChild('loginForm') loginForm: FormControl 
 
   constructor(private userService: UserService, private ptService: ProgressTrackService, private cd: ChangeDetectorRef) { }
@@ -67,11 +71,17 @@ export class NavigationComponent implements OnInit {
       this.userService.checkUser(this.username, this.password)
       .subscribe(object => {
         if(object){
+         //console.log(object)
           this.user = object;
           localStorage.setItem("userName", this.user.username);
-          localStorage.setItem("uid", this.user.uid.toString())
-          localStorage.setItem("authenticated", "true")
+          localStorage.setItem("uid", this.user.uid.toString());
+          localStorage.setItem("image", this.user.avatar);
+          localStorage.setItem("authenticated", "true");
           this.showName = true;  
+
+          if (this.firstLogin){
+            this.ptService.saveChecked(this.user.uid, 0, new Date()).subscribe();
+          }
 
           this.ptService.getUserScore(this.user.uid)
           .subscribe(score => {
@@ -85,8 +95,38 @@ export class NavigationComponent implements OnInit {
   }
 
   onRegister(){
-    this.userService.registerUser(this.rName, this.rPsw, this.rEmail);
-    console.log("register clicked");
+    if (this.radioBtn == 'girl'){
+      this.img ='../../assets/katie.png'
+    } 
+    else {this.img ='../../assets/bughunt.png'}
+    this.userService.registerUser(this.rName, this.rPsw, this.rEmail, this.img).subscribe(obj =>
+      {
+        if(obj){
+          this.userService.checkUser(this.rName, this.rPsw)
+          .subscribe(object => {
+            if(object){
+             //console.log(object)
+              this.user = object;
+              localStorage.setItem("userName", this.user.username);
+              localStorage.setItem("uid", this.user.uid.toString());
+              localStorage.setItem("image", this.user.avatar);
+              localStorage.setItem("authenticated", "true");
+              this.showName = true;  
+
+                this.ptService.saveChecked(this.user.uid, 0, new Date()).subscribe();
+
+    
+              this.ptService.getUserScore(this.user.uid)
+              .subscribe(score => {
+                this.user.score = score;
+                localStorage.setItem("userScore", score.toString());
+              }) 
+            }
+          });  
+        }
+      })
+    
+
   }
 
 }

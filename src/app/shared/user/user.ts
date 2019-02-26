@@ -3,6 +3,7 @@ export class User {
     public psw: string
     public score: number
     public uid: number
+    public avatar: string
 
     constructor() { 
         this.username = ''
