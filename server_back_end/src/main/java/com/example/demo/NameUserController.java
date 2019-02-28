@@ -25,11 +25,13 @@ class NameUserController{
     private UserRepository uRepo;
     private ScoreRepository sRepo;
     private TutorialRepository tRepo;
+    private QuestionRepository qRepo;
 
-    public NameUserController(UserRepository rep, ScoreRepository rep2, TutorialRepository rep3){
+    public NameUserController(UserRepository rep, ScoreRepository rep2, TutorialRepository rep3, QuestionRepository rep4){
         this.uRepo = rep;
         this.sRepo = rep2;
         this.tRepo = rep3;
+        this.qRepo = rep4;
     }
 
     @Autowired
@@ -171,6 +173,13 @@ class NameUserController{
        for (Object[] em: result ) {
            map.put(em[0], em[1]);
        }*/
+    }
+
+    //get quiz options
+    @RequestMapping(value="/getQuestion", method={RequestMethod.GET, RequestMethod.POST})
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Question getQuestion(@RequestBody int qId){
+        return qRepo.findByQuestionID(1);
     }
 
     //Get Tutorial Info
