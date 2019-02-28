@@ -2,6 +2,7 @@ import { Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Question } from './question';
+import { Answer } from './answer';
 
 @Injectable({ providedIn: 'root'})
 export class QuizService {
@@ -17,6 +18,6 @@ export class QuizService {
     }
 
     getAnswers(): Observable<any>{
-        return this.http.post('//localhost:8080/getAnswers', this.httpOptions);
+        return this.http.post<Array<Answer>>('//localhost:8080/getAnswers', this.httpOptions);
     }
 }
