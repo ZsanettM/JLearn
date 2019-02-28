@@ -26,12 +26,14 @@ class NameUserController{
     private ScoreRepository sRepo;
     private TutorialRepository tRepo;
     private QuestionRepository qRepo;
+    private AnswerRepository aRepo;
 
-    public NameUserController(UserRepository rep, ScoreRepository rep2, TutorialRepository rep3, QuestionRepository rep4){
+    public NameUserController(UserRepository rep, ScoreRepository rep2, TutorialRepository rep3, QuestionRepository rep4, AnswerRepository rep5){
         this.uRepo = rep;
         this.sRepo = rep2;
         this.tRepo = rep3;
         this.qRepo = rep4;
+        this.aRepo = rep5;
     }
 
     @Autowired
@@ -180,6 +182,13 @@ class NameUserController{
     @CrossOrigin(origins = "http://localhost:4200")
     public Question getQuestion(@RequestBody int qId){
         return qRepo.findByQuestionID(1);
+    }
+
+    //getAnswers
+    @RequestMapping(value="/getAnswers")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Iterable<Answer> getAnswers(){
+        return aRepo.findAll();
     }
 
     //Get Tutorial Info

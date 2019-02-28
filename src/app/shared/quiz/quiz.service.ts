@@ -15,4 +15,8 @@ export class QuizService {
     getQuestion(qid: number): Observable<any> {
         return this.http.post<Question>('//localhost:8080/getQuestion', qid, this.httpOptions);
     }
+
+    getAnswers(): Observable<any>{
+        return this.http.post('//localhost:8080/getAnswers', this.httpOptions);
+    }
 }

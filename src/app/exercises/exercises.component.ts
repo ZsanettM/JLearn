@@ -24,6 +24,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
 
     this.qService.getQuestion(1).subscribe(question => {
       if (question){
+        console.log(question.questionId)
 
         //create DOM element - table
         /*table = this.renderer.createElement('table')
@@ -41,6 +42,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
         var tbody = this.renderer.createElement('tbody')
         var tr = this.renderer.createElement('tr')
         var td = this.renderer.createElement('td')
+        var rb = this.renderer.createElement('input')
         this.quiz.nativeElement
 
         console.log(question.question);
@@ -49,11 +51,15 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
         for (var i in temp){
           tr = this.renderer.createElement('tr')
           td = this.renderer.createElement('td')
+          rb = this.renderer.createElement('input')
+                 this.renderer.setProperty(rb, 'type', 'radio')
+                 this.renderer.setProperty(rb, 'name', question.questionId)
           var qOpt = this.renderer.createText(temp[i])
 
           console.log(temp[i])
 
           //append options
+          this.renderer.appendChild(td, rb)
           this.renderer.appendChild(td, qOpt)
           this.renderer.appendChild(tr, td)
           this.renderer.appendChild(tbody, tr)
@@ -64,6 +70,8 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
     })
 
     this.renderer.appendChild(this.quiz.nativeElement, table)
+
+    this.qService.getAnswers().subscribe(ans => console.log(ans))
   }
 
   ngAfterViewInit(){

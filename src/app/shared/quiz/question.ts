@@ -1,5 +1,5 @@
 export class Question {
-    public qid: number;
+    public questionId: number;
     public question: string;
     public options: string;
 }

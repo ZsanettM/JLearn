@@ -25,7 +25,4 @@ public class Answer {
     private String option;
 
 
-    @Transient
-    private int questionId;
-
 }
