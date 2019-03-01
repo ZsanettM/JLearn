@@ -58,8 +58,9 @@ export class ExercisesComponent implements OnInit {
           for (var i in temp){
 
             tr = this.renderer.createElement('tr')
+                 this.renderer.setProperty(tr, 'id', temp[i])
+                 this.renderer.setAttribute(tr, 'name', this.answer.question.questionId.toString()+'tr')
             td = this.renderer.createElement('td')
-                 this.renderer.setProperty(td, 'id', temp[i])
             rb = this.renderer.createElement('input')
                    this.renderer.setProperty(rb, 'type', 'radio')
                    this.renderer.setAttribute(rb, 'name', this.answer.question.questionId.toString())
@@ -90,17 +91,28 @@ export class ExercisesComponent implements OnInit {
   }
 
   onCheck(id: number){
+    //remove any classes previously added to radio button group
+    var trow = document.getElementsByName(id.toString()+'tr')
+    trow.forEach(data => {
+      if (data.className == "table-success"){this.renderer.removeClass(data, "table-succes")}
+      else if (data.className == "table-danger"){this.renderer.removeClass(data, "table-danger")}
+    })
+    //correct answer
     if(this.rBtnIn[id] == this.cAns[id]){
       console.log("Correct")
-      var row = document.getElementById(this.rBtnIn[id])
-      this.renderer.addClass(row, "success")
+      var cRow = document.getElementById(this.rBtnIn[id])
+      this.renderer.addClass(cRow, "table-success")
     }
+    //incorrect answer
     else { 
     console.log("Incorrect")
-    console.log("radio:" +this.rBtnIn[id])
-    console.log("answer:" +this.cAns[id])
+    var icRow = document.getElementById(this.rBtnIn[id])
+    this.renderer.addClass(icRow, "table-danger")
+    var cRow = document.getElementById(this.cAns[id])
+    this.renderer.addClass(cRow, "table-success")
+    }
   }
-  }
+
 
 
 }
