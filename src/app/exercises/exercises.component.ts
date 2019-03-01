@@ -102,17 +102,29 @@ export class ExercisesComponent implements OnInit {
     })
     //correct answer
     if(this.rBtnIn[id] == this.cAns[id]){
-      //console.log("Correct")
-      var cRow = document.getElementById(this.rBtnIn[id])
-      this.renderer.addClass(cRow, "table-success")
+      console.log("Correct")
+      var trow = document.getElementsByName(id.toString()+'tr')
+      trow.forEach(data => {
+        if (data.id == this.rBtnIn[id]) {this.renderer.addClass(data, "table-success")}
+      })
+      //var cRow = document.getElementById(this.rBtnIn[id])
+      //this.renderer.addClass(cRow, "table-success")
     }
     //incorrect answer
     else { 
-      //console.log("Incorrect")
-      var icRow = document.getElementById(this.rBtnIn[id])
-      this.renderer.addClass(icRow, "table-danger")
-      var cRow = document.getElementById(this.cAns[id])
-      this.renderer.addClass(cRow, "table-success")
+      var trow = document.getElementsByName(id.toString()+'tr')
+      trow.forEach(data => {
+        if (data.id == this.rBtnIn[id]) {this.renderer.addClass(data, "table-danger")}
+        else if (data.id == this.cAns[id]) {this.renderer.addClass(data, "table-success")}
+      })
+
+      console.log("Incorrect")
+      //var icRow = document.getElementById(this.rBtnIn[id])
+      console.log("Selected: "+this.rBtnIn[id])
+      //this.renderer.addClass(icRow, "table-danger")
+      //var cRow = document.getElementById(this.cAns[id])
+      console.log("Expected: "+this.cAns[id])
+      //this.renderer.addClass(cRow, "table-success")
     }
   }
 
