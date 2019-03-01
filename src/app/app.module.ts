@@ -25,6 +25,7 @@ import { FilesComponent } from './files/files.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Tutorial } from './shared/progress/tutorial';
 import { ExercisesComponent } from './exercises/exercises.component';
+import {AngularStickyThingsModule} from '@w11k/angular-sticky-things';
 
 //The UI components are declarations
 @NgModule({
@@ -54,6 +55,7 @@ import { ExercisesComponent } from './exercises/exercises.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    AngularStickyThingsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: function tokenGetter() {

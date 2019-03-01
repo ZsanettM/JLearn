@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, ChangeDetectorRef} from '@angular/core';
 import { QuizService } from '../shared/quiz/quiz.service';
 import { Answer } from '../shared/quiz/answer';
 import { IHash } from '../shared/quiz/IHash';
-
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-exercises',
@@ -11,17 +11,23 @@ import { IHash } from '../shared/quiz/IHash';
 })
 export class ExercisesComponent implements OnInit {
 
+  @ViewChild('chart') chart: ElementRef;
   @ViewChild('quiz') quiz: ElementRef;
   private answer: Answer;
   private cAns: IHash = {}
   private rBtnIn: IHash = {}
+  private chartData: [number, number, number] = [0,0,0] //correct, incorrect, na
+  private context: CanvasRenderingContext2D;
+  private quizState: any
 
-  constructor(private qService: QuizService, private renderer: Renderer2) { }
+  constructor(private qService: QuizService, private renderer: Renderer2, private cd: ChangeDetectorRef) { }
 
   ngOnInit() { 
 
     this.qService.getAnswers().subscribe(ans => {
         ans.forEach(element => {
+          this.chartData[2] += 1
+          
           var div   = this.renderer.createElement('div')
                       this.renderer.setAttribute(div, 'class', 'quizElement')
           var table = this.renderer.createElement('table')
@@ -86,32 +92,49 @@ export class ExercisesComponent implements OnInit {
 
           this.renderer.appendChild(div, table)
           this.renderer.appendChild(div, btn)
-          //this.renderer.appendChild(this.quiz.nativeElement, table)
           this.renderer.appendChild(this.quiz.nativeElement, div)
         });
+
+      console.log(this.chartData)
+      this.drawChart()
       })
 
   }
 
   onCheck(id: number){
+
+    var repeatAttemptC = false; //repeated check  - correct originally
+    var repeatAttemptW = false; //repeated check  - incorrect originally
     //remove any classes previously added to radio button group
     var trow = document.getElementsByName(id.toString()+'tr')
     trow.forEach(data => {
-      if (data.className == "table-success"){this.renderer.removeClass(data, "table-succes")}
-      else if (data.className == "table-danger"){this.renderer.removeClass(data, "table-danger")}
+      if (data.className == "table-success"){
+        this.renderer.removeClass(data, "table-succes")
+        repeatAttemptC = true
+      }
+      else if (data.className == "table-danger"){
+        this.renderer.removeClass(data, "table-danger")
+        repeatAttemptW = true
+        if(repeatAttemptW && this.chartData[1]!=0) {this.chartData[1] -= 1}
+      }
     })
+    if (repeatAttemptC && !repeatAttemptW){
+      if(repeatAttemptC && this.chartData[0]!=0) {this.chartData[0] -= 1}
+    }
+
     //correct answer
     if(this.rBtnIn[id] == this.cAns[id]){
+      this.chartData[0] += 1
       console.log("Correct")
       var trow = document.getElementsByName(id.toString()+'tr')
       trow.forEach(data => {
         if (data.id == this.rBtnIn[id]) {this.renderer.addClass(data, "table-success")}
       })
-      //var cRow = document.getElementById(this.rBtnIn[id])
-      //this.renderer.addClass(cRow, "table-success")
     }
+
     //incorrect answer
     else { 
+      this.chartData[1] += 1
       var trow = document.getElementsByName(id.toString()+'tr')
       trow.forEach(data => {
         if (data.id == this.rBtnIn[id]) {this.renderer.addClass(data, "table-danger")}
@@ -119,13 +142,37 @@ export class ExercisesComponent implements OnInit {
       })
 
       console.log("Incorrect")
-      //var icRow = document.getElementById(this.rBtnIn[id])
       console.log("Selected: "+this.rBtnIn[id])
-      //this.renderer.addClass(icRow, "table-danger")
-      //var cRow = document.getElementById(this.cAns[id])
       console.log("Expected: "+this.cAns[id])
-      //this.renderer.addClass(cRow, "table-success")
     }
+
+    if(!repeatAttemptC && !repeatAttemptW)  {this.chartData[2] -= 1}
+    console.log(this.chartData)
+    this.quizState.destroy()
+    this.drawChart()
+  }
+
+  drawChart(){
+    this.cd.detectChanges();
+
+    this.context = (<HTMLCanvasElement>this.chart.nativeElement).getContext('2d');
+    this.quizState = new Chart(this.context, {
+      type: 'doughnut',
+      data:{
+        labels: ['correct', 'wrong', 'unanswered'],
+        datasets: [{
+          data: this.chartData,
+          backgroundColor:  ['#3cba9f', '#ff6666', '#ffcc00']
+        }]
+      },
+      options: {
+        animation: {
+          animateRotate: true,
+          animateScale: false
+        }
+      }
+    })
+
   }
 
 
