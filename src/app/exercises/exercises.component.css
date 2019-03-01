@@ -4,3 +4,16 @@ tbody > tr:hover {
 input {
     margin-right: 50px;
 }
+.quizElement{
+    margin-bottom: 50px;
+    border: 2px dashed black;
+    padding-bottom: 40px;
+    padding-right: 5px;
+}
+ button{
+    float: right;
+}
+.question{
+    background-color: #26A69A;
+    border: 2px solid #e3b902;
+}

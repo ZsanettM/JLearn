@@ -21,23 +21,23 @@ export class ExercisesComponent implements OnInit {
   ngOnInit() { 
 
     this.qService.getAnswers().subscribe(ans => {
-      console.log(ans)
         ans.forEach(element => {
+          var div   = this.renderer.createElement('div')
+                      this.renderer.setAttribute(div, 'class', 'quizElement')
           var table = this.renderer.createElement('table')
           this.renderer.addClass(table, 'table')
           var thead = this.renderer.createElement('thead')
           var trh   = this.renderer.createElement('tr')
-                    this.renderer.addClass(trh, 'warning')
+                    this.renderer.addClass(trh, 'question')
           var th    = this.renderer.createElement('th')
           var btn   = this.renderer.createElement('button')
-                    this.renderer.setProperty(btn, 'type','button')
+                      this.renderer.setProperty(btn, 'type','button')
+                      this.renderer.setAttribute(btn, 'class', 'btn btn-success')
           var btnTxt= this.renderer.createText('Check')
 
           this.renderer.appendChild(btn, btnTxt)
           this.answer = element
           this.cAns[this.answer.question.questionId] = JSON.parse(this.answer.option)
-          //this.cAns.push(JSON.parse(this.answer.option))
-          //console.log(this.cAns[this.answer.question.questionId-1])
 
           var qText = this.renderer.createText(this.answer.question.question)
           //append question
@@ -83,8 +83,11 @@ export class ExercisesComponent implements OnInit {
 
           this.renderer.setProperty(btn, 'value', this.answer.question.questionId)
           this.renderer.listen(btn, 'click', (event) => { this.onCheck(btn.value)})
-          this.renderer.appendChild(this.quiz.nativeElement, table)
-          this.renderer.appendChild(this.quiz.nativeElement, btn)
+
+          this.renderer.appendChild(div, table)
+          this.renderer.appendChild(div, btn)
+          //this.renderer.appendChild(this.quiz.nativeElement, table)
+          this.renderer.appendChild(this.quiz.nativeElement, div)
         });
       })
 
@@ -99,17 +102,17 @@ export class ExercisesComponent implements OnInit {
     })
     //correct answer
     if(this.rBtnIn[id] == this.cAns[id]){
-      console.log("Correct")
+      //console.log("Correct")
       var cRow = document.getElementById(this.rBtnIn[id])
       this.renderer.addClass(cRow, "table-success")
     }
     //incorrect answer
     else { 
-    console.log("Incorrect")
-    var icRow = document.getElementById(this.rBtnIn[id])
-    this.renderer.addClass(icRow, "table-danger")
-    var cRow = document.getElementById(this.cAns[id])
-    this.renderer.addClass(cRow, "table-success")
+      //console.log("Incorrect")
+      var icRow = document.getElementById(this.rBtnIn[id])
+      this.renderer.addClass(icRow, "table-danger")
+      var cRow = document.getElementById(this.cAns[id])
+      this.renderer.addClass(cRow, "table-success")
     }
   }
 
