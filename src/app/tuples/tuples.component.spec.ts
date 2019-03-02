@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TuplesComponent } from './tuples.component';
+import { MatExpansionModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TuplesComponent', () => {
   let component: TuplesComponent;
@@ -8,7 +12,8 @@ describe('TuplesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TuplesComponent ]
+      declarations: [ TuplesComponent ],
+      imports: [MatExpansionModule, FormsModule, HttpClientModule, BrowserAnimationsModule]
     })
     .compileComponents();
   }));

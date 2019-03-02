@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoopsComponent } from './loops.component';
+import { MatExpansionModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LoopsComponent', () => {
   let component: LoopsComponent;
@@ -8,7 +12,8 @@ describe('LoopsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoopsComponent ]
+      declarations: [ LoopsComponent ],
+      imports: [MatExpansionModule, FormsModule, HttpClientModule, BrowserAnimationsModule]
     })
     .compileComponents();
   }));
