@@ -10,13 +10,48 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 describe('UserService', () => {
   let service: UserService
   let http: HttpTestingController
+  let storage
 
-  beforeEach(() =>{ TestBed.configureTestingModule({
+  beforeEach(() =>{
+    TestBed.configureTestingModule({
     imports: [HttpClientTestingModule, HttpClientModule, RouterTestingModule.withRoutes([])],
     providers: [UserService]
   })
   http = TestBed.get(HttpTestingController)
   service = TestBed.get(UserService)
+
+  //mock localStorage 
+  storage = {};
+
+  const mLocalStorage = {
+
+    getItem: (key: string): string => {
+      return key in storage ? storage[key] : null;
+    },
+    setItem: (key: string, value: string) => {
+      storage[key] = value;
+    },
+    removeItem: (key: string) => {
+      delete storage[key];
+    },
+    clear: () => {
+      storage = {}
+    },
+    length: () => {
+      let temp = 0;
+      for (let i in storage){
+        temp++
+      }
+      return temp
+    }
+  }
+
+  //use spyOn to replace calls to localStorage with calls to mLocalStorage (mock)
+  spyOn(localStorage, 'getItem').and.callFake(mLocalStorage.getItem);
+  spyOn(localStorage, 'setItem').and.callFake(mLocalStorage.setItem);
+  spyOn(localStorage, 'removeItem').and.callFake(mLocalStorage.setItem);
+  spyOn(localStorage, 'clear').and.callFake(mLocalStorage.clear);
+  spyOnProperty(localStorage, 'length').and.callFake(mLocalStorage.length)
 });
 
 const dummyUsers = [
@@ -60,5 +95,15 @@ const dummyUsers = [
       }
     })
     req.flush(null)
+  })
+
+  it('should empty localStorage on logout()', () => {
+    localStorage.setItem("userName","Tester2")
+    localStorage.setItem("uid", "99")
+    localStorage.setItem( "image", "../../assets/katie.png")
+    expect(localStorage.length).toEqual(3);
+    
+    service.logout();
+    expect(localStorage.length).toEqual(0);
   })
 });
