@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javax.persistence.Id;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
@@ -12,8 +13,10 @@ import lombok.*;
 public class User {
     @Id @GeneratedValue
     private Long uid;
+    //@Column(unique=true)
     private @NonNull String username;
     private @NonNull String password;
+    @Column(unique=true)
     private @NonNull String email;
     private String avatar;
 
