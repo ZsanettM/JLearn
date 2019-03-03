@@ -27,4 +27,8 @@ describe('LoopsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  afterEach(() =>{
+    fixture.destroy();
+  })
 });
