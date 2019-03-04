@@ -148,6 +148,24 @@ export class ExercisesComponent implements OnInit {
 
     if(!repeatAttemptC && !repeatAttemptW)  {this.chartData[2] -= 1}
     console.log(this.chartData)
+
+    if(this.chartData[2] == 0) {
+      //calc result:
+      let calculatedRes = this.chartData[0]*100/(this.chartData[0]+this.chartData[1])
+
+      console.log("Finished quiz, result: ",calculatedRes)
+      alert("Quiz finished! +100pts")
+      this.qService.saveQuiz(Number(localStorage.getItem("uid")))
+      .subscribe(data =>  {
+        //get new score
+        this.qService.getUserScore(Number(localStorage.getItem("uid")))
+        .subscribe(score => {
+          localStorage.setItem("userScore", score.toString());
+        }) 
+     });
+     this.qService.saveQuizResult(Number(localStorage.getItem("uid")), calculatedRes).subscribe()
+    }
+
     this.quizState.destroy()
     this.drawChart()
   }

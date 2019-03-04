@@ -4,6 +4,8 @@ import { Chart } from 'chart.js';
 import 'vis/dist/vis-timeline-graph2d.min.css';
 import { ProgressTrackService } from '../shared/progress/progressTrack.service';
 import { Score } from '../shared/progress/score';
+import { QuizService } from '../shared/quiz/quiz.service';
+import { QuizRes } from '../shared/quizRes';
 
 @Component({
   selector: 'app-progress',
@@ -17,6 +19,7 @@ export class ProgressComponent implements OnInit{
   private currentTime: Date
   private tempTimeForEnd: Date
   private counter: number = 0
+  private qResult: QuizRes = new QuizRes
 
   private uName: string; private uScore: number; private uId: number; private uImg: string;
   private defaultScreen: boolean = true;
@@ -26,7 +29,7 @@ export class ProgressComponent implements OnInit{
   private lbScores: any[]= []
   private lbNames: any[] = []
 
-  constructor(private service: ProgressTrackService, private cd: ChangeDetectorRef) {
+  constructor(private service: ProgressTrackService, private qService: QuizService, private cd: ChangeDetectorRef) {
    }
 
     public ngOnInit(): void {
@@ -35,6 +38,11 @@ export class ProgressComponent implements OnInit{
       this.uScore = Number(localStorage.getItem("userScore"))
       this.uId = Number(localStorage.getItem("uid"))
       this.uImg = localStorage.getItem("image")
+
+      this.qService.getQuizResult(this.uId).subscribe(result => {
+        if(result){this.qResult = result}
+        else {this.qResult.result = 0}
+      })
 
       //get scores from DB
       this.getProgressData();

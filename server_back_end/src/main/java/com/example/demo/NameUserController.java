@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -27,13 +30,15 @@ class NameUserController{
     private TutorialRepository tRepo;
     private QuestionRepository qRepo;
     private AnswerRepository aRepo;
+    private QuizResultRepositroy qrRepo;
 
-    public NameUserController(UserRepository rep, ScoreRepository rep2, TutorialRepository rep3, QuestionRepository rep4, AnswerRepository rep5){
+    public NameUserController(UserRepository rep, ScoreRepository rep2, TutorialRepository rep3, QuestionRepository rep4, AnswerRepository rep5, QuizResultRepositroy rep6){
         this.uRepo = rep;
         this.sRepo = rep2;
         this.tRepo = rep3;
         this.qRepo = rep4;
         this.aRepo = rep5;
+        this.qrRepo = rep6;
     }
 
     @Autowired
@@ -189,6 +194,31 @@ class NameUserController{
     @CrossOrigin(origins = "http://localhost:4200")
     public Iterable<Answer> getAnswers(){
         return aRepo.findAll();
+    }
+
+    //add quiz result
+    @RequestMapping(value="/saveQuizResult")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @JsonProperty("data")
+    public Boolean saveQuizR(@RequestBody JsonNode data){        
+
+        User returnedUser = this.uRepo.findById(data.get("uid").asLong()).get();
+        QuizResult qr = new QuizResult();
+        qr.setUser(returnedUser);
+        qr.setResult(data.get("result").asInt());
+        try{
+            qrRepo.save(qr);
+            return true;
+        }catch(Exception e){return false;}
+    }
+
+    //get quiz result
+    @RequestMapping(value="/getQuizResult", method = {RequestMethod.POST}, 
+    consumes = {"application/json"})
+    @CrossOrigin(origins = "http://localhost:4200")
+    public QuizResult getQuizR(@RequestBody int uid){
+        User returnedUser = this.uRepo.findById((long) uid).get();
+        return qrRepo.findByUser(returnedUser);
     }
 
     //Get Tutorial Info

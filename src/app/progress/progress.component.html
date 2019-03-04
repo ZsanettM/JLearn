@@ -9,7 +9,27 @@
             <img class="card-img-top" [src]="uImg" alt="Card image" style="width:50%">
             <div class="card-body">
                 <h4 class="card-title">{{uName}}</h4>
-                <p class="card-text">Points: {{uScore}}</p>
+                <p class="card-text" style="color:grey">email@some.com</p>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                    Points: 
+                            </td>
+                            <td>
+                                    {{uScore}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    Quiz: 
+                            </td>
+                            <td>
+                                    {{qResult.result}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
               </div>
         </div>
     </div>
