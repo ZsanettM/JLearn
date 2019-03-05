@@ -54,7 +54,7 @@
     <ul class="navbar-nav">
       <!-- Trigger modal -->
 
-        <li class="nav-item">
+        <li class="nav-item" id="loginBtn">
           <a class="nav-item nav-link log" type="button" data-toggle="modal" data-target="#LoginModal">
             <img src="/assets/log-in.png" width="40" height="40" alt="">Login
           </a>
@@ -66,7 +66,7 @@
 
 
   <!-- Modal 1 (Login)-->
-  <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
+  <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel"  [ngStyle]="{'display':error}" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -89,6 +89,11 @@
             <br>
             <p>Haven't registered yet? <a href="#RegisterModal" type="link" data-toggle="modal" data-target="#RegisterModal" data-dismiss="modal">Register</a></p>
           </form>
+        </div>
+
+        <div *ngIf="error" class="logError alert alert-danger">
+          Incorrect login credentials. <br>
+          Check the details you entered and try again.
         </div>
 
 

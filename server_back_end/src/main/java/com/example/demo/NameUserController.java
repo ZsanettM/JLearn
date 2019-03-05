@@ -69,15 +69,20 @@ class NameUserController{
         method = {RequestMethod.GET, RequestMethod.POST})
     @CrossOrigin(origins = "http://localhost:4200")
     public User fUser(@RequestBody User u){
-        User checkedUser = this.uRepo.findByUsername(u.getUsername());
-        
-        //System.out.println(passwordEncoder().encode(u.getPsw()));
+        try{
+            User checkedUser = this.uRepo.findByUsername(u.getUsername());
+            //System.out.println(passwordEncoder().encode(u.getPsw()));
 
-        if (BCrypt.checkpw(u.getPsw(), checkedUser.getPsw())){
-            System.out.println("Plaintext: "+u.getPsw()+", PlainHash: "+ passwordEncoder().encode(u.getPsw()) +"BCrypt: "+checkedUser.getPsw()+" - match");
-            return this.uRepo.findByUsername(u.getUsername());
+            if (BCrypt.checkpw(u.getPsw(), checkedUser.getPsw())){
+                System.out.println("Plaintext: "+u.getPsw()+", PlainHash: "+ passwordEncoder().encode(u.getPsw()) +"BCrypt: "+checkedUser.getPsw()+" - match");
+                return this.uRepo.findByUsername(u.getUsername());
+            }
+            else { return null; }
         }
-        else { return null; }
+        catch(Exception e){
+            return null;
+        }
+
         
     }
 

@@ -20,6 +20,7 @@ export class NavigationComponent implements OnInit {
 
   pswInL: boolean = true;
   pswInR: boolean = true;
+  error: boolean = false;
 
   //registration form elements
   regForm: FormGroup;
@@ -70,10 +71,12 @@ export class NavigationComponent implements OnInit {
 
   //login
   onSubmit() {
+    
       //this.userService.assignUserData(this.username, this.password);
       this.userService.checkUser(this.username, this.password)
       .subscribe(object => {
         if(object){
+          this.error = false;
          //console.log(object)
           this.user = object;
           localStorage.setItem("userName", this.user.username);
@@ -91,6 +94,11 @@ export class NavigationComponent implements OnInit {
             this.user.score = score;
             localStorage.setItem("userScore", score.toString());
           }) 
+        }
+        else{
+          this.cd.detectChanges();
+          this.error = true;
+          console.log(this.error)
         }
       });  
 
