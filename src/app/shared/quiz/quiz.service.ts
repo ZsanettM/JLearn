@@ -35,6 +35,11 @@ export class QuizService {
         return this.http.post('//localhost:8080/saveQuizResult', JSON.stringify({uid: uid, result: result}), this.httpOptions);
     }
 
+    //save quiz result (uid, result)
+    updateQuizResult(uid: number, result: number){
+        return this.http.post('//localhost:8080/updateQuizResult', JSON.stringify({uid: uid, result: result}), this.httpOptions);
+    }
+
     //get overall user score based on uid
     getUserScore(userId: number): Observable<any> {
         return this.http.post<any>('//localhost:8080/scoreSum', userId, this.httpOptions);

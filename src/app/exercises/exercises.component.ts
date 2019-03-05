@@ -23,6 +23,8 @@ export class ExercisesComponent implements OnInit {
   constructor(private qService: QuizService, private renderer: Renderer2, private cd: ChangeDetectorRef) { }
 
   ngOnInit() { 
+    //If quiz has been done before => display message
+    if(!localStorage.getItem('quiz')){}
 
     this.qService.getAnswers().subscribe(ans => {
         ans.forEach(element => {
@@ -155,15 +157,20 @@ export class ExercisesComponent implements OnInit {
 
       console.log("Finished quiz, result: ",calculatedRes)
       alert("Quiz finished! +100pts")
-      this.qService.saveQuiz(Number(localStorage.getItem("uid")))
-      .subscribe(data =>  {
-        //get new score
-        this.qService.getUserScore(Number(localStorage.getItem("uid")))
-        .subscribe(score => {
-          localStorage.setItem("userScore", score.toString());
-        }) 
-     });
-     this.qService.saveQuizResult(Number(localStorage.getItem("uid")), calculatedRes).subscribe()
+      if(!localStorage.getItem('quiz')){
+        this.qService.saveQuiz(Number(localStorage.getItem("uid")))
+        .subscribe(data =>  {
+          //get new score
+          this.qService.getUserScore(Number(localStorage.getItem("uid")))
+          .subscribe(score => {
+            localStorage.setItem("userScore", score.toString());
+          }) 
+        });
+        this.qService.saveQuizResult(Number(localStorage.getItem("uid")), calculatedRes).subscribe()
+      }else{
+        //TODO: write update method
+        this.qService.updateQuizResult(Number(localStorage.getItem("uid")), calculatedRes).subscribe()
+      }
     }
 
     this.quizState.destroy()

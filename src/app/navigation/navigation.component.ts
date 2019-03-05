@@ -17,6 +17,7 @@ export class NavigationComponent implements OnInit {
   password: string;
   score: number;
   firstLogin: Boolean =false;
+  type: string="password"
 
   //registration form elements
   regForm: FormGroup;

@@ -39,3 +39,12 @@
   border-radius: 50%;
   border: 1px solid rgb(112, 112, 112);
 }
+.nav-link:hover{
+  cursor: pointer;
+}
+.fa-eye {
+  float: right;
+  margin-right: 5px;
+  position: relative;
+  z-index: 2;
+}

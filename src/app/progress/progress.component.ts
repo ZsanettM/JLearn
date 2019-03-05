@@ -40,8 +40,14 @@ export class ProgressComponent implements OnInit{
       this.uImg = localStorage.getItem("image")
 
       this.qService.getQuizResult(this.uId).subscribe(result => {
-        if(result){this.qResult = result}
-        else {this.qResult.result = 0}
+        if(result){
+          this.qResult = result
+          localStorage.setItem('quiz', this.qResult.result.toString())
+        }
+        else {
+          this.qResult.result = 0
+          localStorage.setItem('quiz', '0')
+        }
       })
 
       //get scores from DB

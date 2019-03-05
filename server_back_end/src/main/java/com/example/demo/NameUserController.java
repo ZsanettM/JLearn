@@ -205,7 +205,22 @@ class NameUserController{
         User returnedUser = this.uRepo.findById(data.get("uid").asLong()).get();
         QuizResult qr = new QuizResult();
         qr.setUser(returnedUser);
-        qr.setResult(data.get("result").asInt());
+        qr.setResult(data.get("result").asDouble());
+        try{
+            qrRepo.save(qr);
+            return true;
+        }catch(Exception e){return false;}
+    }
+
+    //update quiz result
+    @RequestMapping(value="/updateQuizResult")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @JsonProperty("data")
+    public Boolean updateQuizR(@RequestBody JsonNode data){        
+
+        User returnedUser = this.uRepo.findById(data.get("uid").asLong()).get();
+        QuizResult qr = qrRepo.findByUser(returnedUser);
+        qr.setResult(data.get("result").asDouble());
         try{
             qrRepo.save(qr);
             return true;
