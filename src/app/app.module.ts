@@ -26,6 +26,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { Tutorial } from './shared/progress/tutorial';
 import { ExercisesComponent } from './exercises/exercises.component';
 import {AngularStickyThingsModule} from '@w11k/angular-sticky-things';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 //The UI components are declarations
 @NgModule({
@@ -63,7 +64,8 @@ import {AngularStickyThingsModule} from '@w11k/angular-sticky-things';
         },
         whitelistedDomains: ['localhost:4200']
       }
-    })
+    }),
+    AngularFontAwesomeModule
   ],
   //the service glue is a provider
   providers: [AuthGuardService],

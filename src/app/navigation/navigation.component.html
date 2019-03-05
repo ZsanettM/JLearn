@@ -83,9 +83,8 @@
             </div>
             <label for="psw"><strong>Password:</strong></label>
             <div class="input-group">
-              <input id="psw" type="{{type}}" class="form-control" name="psw" placeholder="Password" required [(ngModel)]="password" #psw="ngModel">
-              <span class="fas fa-eye"></span>
-              {{password}}
+              <input id="psw" [type]="pswInL ? 'password' : 'text'" class="form-control" name="psw" placeholder="Password" required [(ngModel)]="password" #psw="ngModel">
+              <button (click)="pswInL = !pswInL"><fa class="eye" [name]="pswInL ? 'eye' : 'eye-slash'"></fa></button>
             </div>
             <br>
             <p>Haven't registered yet? <a href="#RegisterModal" type="link" data-toggle="modal" data-target="#RegisterModal" data-dismiss="modal">Register</a></p>
@@ -153,7 +152,8 @@
 
                 <label for="pswReg"><strong>Enter a password:</strong></label>
                 <div class="input-group">
-                  <input id="pswReg" type="password" class="form-control" name="pswReg" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}"  [(ngModel)]="rPsw" #pswReg="ngModel" placeholder="Password">
+                  <input id="pswReg" [type]="pswInR ? 'password' : 'text'" class="form-control" name="pswReg" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}"  [(ngModel)]="rPsw" #pswReg="ngModel" placeholder="Password">
+                  <button (click)="pswInR = !pswInR"><fa class="eye" [name]="pswInR ? 'eye' : 'eye-slash'"></fa></button>
                 </div>
 
                 <div *ngIf="pswReg.invalid && (pswReg.dirty || pswReg.touched)" class="alert alert-danger">
@@ -173,8 +173,6 @@
                   <input id="imgCheckM" type="radio" class="form-control radio" name="imgCheck" value="boy" checked [(ngModel)]="radioBtn">(default)
                     <img class="avatar" src="../../assets/bughunt.png">
                 </div>
-
-              {{rPsw}}
               <br>
             </form>
           </div>
