@@ -29,7 +29,6 @@
   </div>
   <div *ngIf="showName; else login" class="navbar-expand ml-auto">
     <ul class="navbar-nav">
-      <!-- Trigger modal -->
 
         <li class="nav-item">
           <span class="nav-item nav-link navAlign">
@@ -53,10 +52,15 @@
   <ng-template #login class="navbar-expand ml-auto">
     <ul class="navbar-nav">
       <!-- Trigger modal -->
-
+        
         <li class="nav-item" id="loginBtn">
+          
           <a class="nav-item nav-link log" type="button" data-toggle="modal" data-target="#LoginModal">
-            <img src="/assets/log-in.png" width="40" height="40" alt="">Login
+            <span *ngIf="errorL || errorR" class="error">
+              <fa id="error" name="exclamation-circle"></fa>              
+              <span class="err">{{errMsg}}</span>
+            </span>              
+              <img src="/assets/log-in.png" width="40" height="40" alt="">Login
           </a>
         </li>
     </ul>
@@ -66,7 +70,7 @@
 
 
   <!-- Modal 1 (Login)-->
-  <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel"  [ngStyle]="{'display':error}" aria-hidden="true">
+  <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel"   aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -87,11 +91,13 @@
               <button (click)="pswInL = !pswInL"><fa class="eye" [name]="pswInL ? 'eye' : 'eye-slash'"></fa></button>
             </div>
             <br>
-            <p>Haven't registered yet? <a href="#RegisterModal" type="link" data-toggle="modal" data-target="#RegisterModal" data-dismiss="modal">Register</a></p>
+            <p>Haven't registered yet? <a href="#RegisterModal" type="link" data-toggle="modal" data-target="#RegisterModal" data-dismiss="modal">Register<fa *ngIf="errorL || errorR" id="error" name="exclamation-circle"></fa>   </a></p>
+
+                
           </form>
         </div>
 
-        <div *ngIf="error" class="logError alert alert-danger">
+        <div *ngIf="errorL" class="logError alert alert-danger">
           Incorrect login credentials. <br>
           Check the details you entered and try again.
         </div>
@@ -182,7 +188,10 @@
             </form>
           </div>
 
-
+          <div *ngIf="errorR" class="logError alert alert-danger">
+              This email address provided already has an account linked to it. <br>
+              Log-in to access your account
+            </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

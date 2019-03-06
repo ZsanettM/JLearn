@@ -20,7 +20,9 @@ export class NavigationComponent implements OnInit {
 
   pswInL: boolean = true;
   pswInR: boolean = true;
-  error: boolean = false;
+  errorL: boolean = false;
+  errorR: boolean = false;
+  errMsg: string =""
 
   //registration form elements
   regForm: FormGroup;
@@ -76,13 +78,15 @@ export class NavigationComponent implements OnInit {
       this.userService.checkUser(this.username, this.password)
       .subscribe(object => {
         if(object){
-          this.error = false;
+          this.errorL = false; this.errorR = false;
+          this.errMsg = ""
          //console.log(object)
           this.user = object;
           localStorage.setItem("userName", this.user.username);
           localStorage.setItem("uid", this.user.uid.toString());
           localStorage.setItem("image", this.user.avatar);
           localStorage.setItem("authenticated", "true");
+          localStorage.setItem("email",this.user.email)
           this.showName = true;  
 
           if (this.firstLogin){
@@ -97,8 +101,9 @@ export class NavigationComponent implements OnInit {
         }
         else{
           this.cd.detectChanges();
-          this.error = true;
-          console.log(this.error)
+          this.errMsg = "Incorrect login details"
+          this.errorL = true;
+          console.log("loginERR - ",this.errorL)
         }
       });  
 
@@ -113,6 +118,9 @@ export class NavigationComponent implements OnInit {
     this.userService.registerUser(this.rName, this.rPsw, this.rEmail, this.img).subscribe(obj =>
       {
         if(obj){
+          this.errorR = false; this.errorL = false;
+          this.errMsg = ""
+
           this.userService.checkUser(this.rName, this.rPsw)
           .subscribe(object => {
             if(object){
@@ -134,6 +142,11 @@ export class NavigationComponent implements OnInit {
               }) 
             }
           });  
+        }else{
+          this.cd.detectChanges();
+          this.errorR = true;
+          this.errMsg = "Email has been used to register before"
+          console.log("regERR - ",this.errorR)
         }
       })
     

@@ -43,3 +43,14 @@
 .nav-link:hover{
   cursor: pointer;
 }
+.error{
+  border: 1px solid red;
+  padding: 2px
+}
+#error{
+  color: red;
+  margin-right: 10px;
+}
+.err{
+  margin-right: 5px;
+}

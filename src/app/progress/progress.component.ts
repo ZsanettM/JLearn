@@ -21,7 +21,7 @@ export class ProgressComponent implements OnInit{
   private counter: number = 0
   private qResult: QuizRes = new QuizRes
 
-  private uName: string; private uScore: number; private uId: number; private uImg: string;
+  private uName: string; private uScore: number; private uId: number; private uImg: string; private uEmail: string;
   private defaultScreen: boolean = true;
 
   @ViewChild('lbCanvas') canvas: ElementRef;
@@ -38,6 +38,7 @@ export class ProgressComponent implements OnInit{
       this.uScore = Number(localStorage.getItem("userScore"))
       this.uId = Number(localStorage.getItem("uid"))
       this.uImg = localStorage.getItem("image")
+      this.uEmail = localStorage.getItem("email")
 
       this.qService.getQuizResult(this.uId).subscribe(result => {
         if(result){
@@ -46,7 +47,6 @@ export class ProgressComponent implements OnInit{
         }
         else {
           this.qResult.result = 0
-          localStorage.setItem('quiz', '0')
         }
       })
 

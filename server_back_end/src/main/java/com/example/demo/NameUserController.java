@@ -111,7 +111,7 @@ class NameUserController{
         method = RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:4200")
     public List<Score> getProgress(@RequestBody int uid){
-        return sRepo.findAllByUidOrderByTimestmp(Long.valueOf(uid));
+        return sRepo.findAllByUidOrderByTimestmp((long)uid);
     }
 
     //Save User Progress Data
