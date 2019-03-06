@@ -125,8 +125,9 @@
       <div class="read-check">
         <!--<mat-checkbox class="example-margin read-check-input" [(ngModel)]="checked" (click)="onChecked()">Checked</mat-checkbox>-->
         <input type="checkbox" class="read-check-input" id="forLoopsCheck" [(ngModel)]="checked"  (click)="onChecked()">
-        <label class="form-check-label" for="exampleCheck1">  Tutorial finished
-            <span *ngIf="checked"> +30 pts</span>
+        <label class="form-check-label" for="exampleCheck1"> 
+            {{checked ? 'Tutorial finished' : 'Click on this checkbox to mark this section read'}}
+            <fa *ngIf="checked" name="star"></fa>
         </label>
       </div>
     </div>

@@ -86,8 +86,9 @@
 
       <div class="read-check">
         <input type="checkbox" class="read-check-input" id="simpleProgramsCheck" [(ngModel)]="checked" (click)="onChecked()">
-        <label class="form-check-label" for="exampleCheck1"> Tutorial finished
-            <span *ngIf="checked"> +30 pts</span>
+        <label class="form-check-label" for="simpleProgramsCheck"> 
+          {{checked ? 'Tutorial finished' : 'Click on this checkbox to mark this section read'}}
+            <fa *ngIf="checked" name="star"></fa>
         </label>
      </div>
 

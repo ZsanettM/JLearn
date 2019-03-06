@@ -47,9 +47,13 @@ iframe {
     padding: 5px;
   }
 
-.read-check {
-  text-align: center;
-  margin-top: 5px;
-  padding-top: 2px;
-  background-color: lightgrey;
-}
+  .read-check {
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #ffbf80;
+  }
+  label {
+    margin-left: 5px;
+  }
