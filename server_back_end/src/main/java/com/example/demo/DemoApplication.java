@@ -16,12 +16,5 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
- 	@Bean
-	ApplicationRunner init(ScoreRepository repository, TutorialRepository tRepo, QuestionRepository qRepo){
-		return args -> {
-			System.out.println(qRepo.findById(1).get());
-		};
-	} 
-
 }
 

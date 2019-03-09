@@ -45,7 +45,9 @@ export class ExercisesComponent implements OnInit {
 
           this.renderer.appendChild(btn, btnTxt)
           this.answer = element
-          this.cAns[this.answer.question.questionId] = JSON.parse(this.answer.option)
+          console.log(this.answer.option);
+          
+          this.cAns[this.answer.question.questionId] = this.answer.option
 
           var qText = this.renderer.createText(this.answer.question.question)
           //append question
@@ -61,6 +63,7 @@ export class ExercisesComponent implements OnInit {
           var rb = this.renderer.createElement('input')
           this.quiz.nativeElement
 
+          console.log(this.answer.question.options)
           var temp = JSON.parse(this.answer.question.options)
 
           for (var i in temp){

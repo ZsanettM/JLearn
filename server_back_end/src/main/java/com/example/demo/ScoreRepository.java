@@ -23,9 +23,9 @@ interface ScoreRepository extends CrudRepository<Score, Long>{
     @Transactional
     Score findByTutorialAndUid(Tutorial t, Long uid);
 
-    @Query(value = "SELECT SUM(Tutorial.points) from Tutorial INNER JOIN Score ON Score.tid = Tutorial.tid where Score.uid = :uid", nativeQuery = true)
+    @Query(value = "SELECT SUM(tutorial.points) from tutorial INNER JOIN score ON score.tid = tutorial.tid where score.uid = :uid", nativeQuery = true)
     int findByUid(@Param("uid") Long uid);
 
-    @Query(value="SELECT SUM(Tutorial.points) as overall, User.username FROM Tutorial INNER JOIN Score ON Score.tid = Tutorial.tid INNER JOIN User ON User.uid = Score.uid GROUP BY User.username ORDER BY overall DESC LIMIT 10", nativeQuery=true)
+    @Query(value="SELECT SUM(tutorial.points) as overall, user.username FROM tutorial INNER JOIN score ON score.tid = tutorial.tid INNER JOIN user ON user.uid = score.uid GROUP BY user.username ORDER BY overall DESC LIMIT 10", nativeQuery=true)
     List<Object> findAllTop();
 }
