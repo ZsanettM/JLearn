@@ -37,3 +37,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+server_back_end/target/demo-0.0.1-SNAPSHOT.jar
+server_back_end/target/demo-0.0.1-SNAPSHOT.jar.original
+server_back_end/target/surefire-reports/TEST-com.example.demo.DemoApplicationTests.xml
+server_back_end/target/surefire-reports/com.example.demo.DemoApplicationTests.txt

@@ -33,7 +33,8 @@ export class UserService {
     return this.http.post<{access_token: string}>('//localhost:8080/find', JSON.stringify({username:uname, password:psw}), this.httpOptions)
       .pipe(tap(result => {
         if (result != null) {
-        localStorage.setItem('access_token', result.access_token);
+          this.authenticated = true;
+          localStorage.setItem('access_token', result.access_token);
         }
       }));
       

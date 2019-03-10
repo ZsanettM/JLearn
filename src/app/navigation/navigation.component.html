@@ -10,7 +10,7 @@
               <a class="nav-item nav-link" routerLink="home" routerLinkActive="active">
                 <img src="/assets/liz.png" width="40" height="40" alt="">Home</a>
               </li>
-        <li class="btn-group">
+        <li class="btn-group" *ngIf="showName" >
           <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdown" role="button"><img src="/assets/tutorial.png" width="40" height="40" alt="">Tutorials</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="simpleApps" routerLinkActive="active">Simple Programs</a>
@@ -21,7 +21,7 @@
             <a class="dropdown-item" routerLink="forLoops" routerLinkActive="active">For Loop</a>
           </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="showName" >
         <a class="nav-item nav-link" routerLink="exercises" routerLinkActive="active">
           <img src="/assets/brainteasers.png" width="40" height="40" alt="">Brain Teasers</a>
         </li>

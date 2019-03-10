@@ -23,3 +23,8 @@ img:hover {
   width: 20%;
   display: block
 }
+.container-fluid{
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  height: 71vh;
+}
