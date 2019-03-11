@@ -74,7 +74,7 @@ class NameUserController{
             //System.out.println(passwordEncoder().encode(u.getPsw()));
 
             if (BCrypt.checkpw(u.getPsw(), checkedUser.getPsw())){
-                System.out.println("Plaintext: "+u.getPsw()+", PlainHash: "+ passwordEncoder().encode(u.getPsw()) +"BCrypt: "+checkedUser.getPsw()+" - match");
+                //System.out.println("Plaintext: "+u.getPsw()+", PlainHash: "+ passwordEncoder().encode(u.getPsw()) +"BCrypt: "+checkedUser.getPsw()+" - match");
                 return this.uRepo.findByUsername(u.getUsername());
             }
             else { return null; }

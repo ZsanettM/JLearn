@@ -11,9 +11,9 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 
 export class Tutorial implements OnInit {
-  private checked: boolean =false;
+  public checked: boolean =false;
   public checkTitle: string;
-  private currentTime: Date;
+  public currentTime: Date;
   public tutorialID: number;
   public tutorialLevel: number;
   public tutorialTitle: string;

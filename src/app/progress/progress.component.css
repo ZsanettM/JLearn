@@ -14,7 +14,7 @@ img:hover {
 }
 .card{
   text-align: center;
-  height: 500px;
+  height: 600px;
 }
 .btn-group{
   margin-left: auto;
@@ -26,5 +26,5 @@ img:hover {
 .container-fluid{
   margin-bottom: 0px;
   padding-bottom: 0px;
-  height: 71vh;
+  height: 100%;
 }

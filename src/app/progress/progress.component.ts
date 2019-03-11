@@ -19,10 +19,10 @@ export class ProgressComponent implements OnInit{
   private currentTime: Date
   private tempTimeForEnd: Date
   private counter: number = 0
-  private qResult: QuizRes = new QuizRes
+  public qResult: QuizRes = new QuizRes
 
-  private uName: string; private uScore: number; private uId: number; private uImg: string; private uEmail: string;
-  private defaultScreen: boolean = true;
+  public uName: string; public uScore: number; public uId: number; public uImg: string; public uEmail: string;
+  public defaultScreen: boolean = true;
 
   @ViewChild('lbCanvas') canvas: ElementRef;
   public context: CanvasRenderingContext2D;

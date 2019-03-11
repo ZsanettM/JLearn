@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ExceptionsComponent } from './exceptions/exceptions.component';
-import { JwtModule } from '@auth0/angular-jwt';
+//import { JwtModule } from '@auth0/angular-jwt';
 
 import { AuthGuardService } from './shared/auth-guard.service';
 import { AppComponent } from './app.component';
@@ -23,7 +23,7 @@ import { ClassesComponent } from './classes/classes.component';
 import { ModulesComponent } from './modules/modules.component';
 import { FilesComponent } from './files/files.component';
 import { ProgressComponent } from './progress/progress.component';
-import { Tutorial } from './shared/progress/tutorial';
+import { Tutorial } from './tutorial';
 import { ExercisesComponent } from './exercises/exercises.component';
 import {AngularStickyThingsModule} from '@w11k/angular-sticky-things';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -46,7 +46,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     FilesComponent,
     ExceptionsComponent,
     ProgressComponent,
-    ExercisesComponent
+    ExercisesComponent,
+    Tutorial
   ],
   imports: [
     BrowserModule,
@@ -57,14 +58,14 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     HttpClientModule,
     FormsModule,
     AngularStickyThingsModule,
-    JwtModule.forRoot({
+/*     JwtModule.forRoot({
       config: {
         tokenGetter: function tokenGetter() {
           return localStorage.getItem('access_token');
         },
         whitelistedDomains: ['localhost:4200']
       }
-    }),
+    }) */
     AngularFontAwesomeModule
   ],
   //the service glue is a provider
