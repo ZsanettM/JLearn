@@ -132,14 +132,15 @@ export class NavigationComponent implements OnInit {
               localStorage.setItem("authenticated", "true");
               this.showName = true;  
 
-                this.ptService.saveChecked(this.user.uid, 0, new Date()).subscribe();
-
-    
-              this.ptService.getUserScore(this.user.uid)
-              .subscribe(score => {
-                this.user.score = score;
-                localStorage.setItem("userScore", score.toString());
-              }) 
+                this.ptService.saveChecked(this.user.uid, 0, new Date()).subscribe(o =>
+                  {
+                    //get user score once progress is saved (registration point)
+                    this.ptService.getUserScore(this.user.uid)
+                    .subscribe(score => {
+                      this.user.score = score;
+                      localStorage.setItem("userScore", score.toString());
+                    }) 
+                  });
             }
           });  
         }else{
