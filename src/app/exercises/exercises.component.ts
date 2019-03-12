@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2, ChangeDetectorRef} from '@angular/core';
+import { Router, NavigationStart, NavigationCancel } from '@angular/router';
 import { QuizService } from '../shared/quiz/quiz.service';
 import { Answer } from '../shared/quiz/answer';
 import { IHash } from '../shared/quiz/IHash';
@@ -19,10 +20,31 @@ export class ExercisesComponent implements OnInit {
   private chartData: [number, number, number] = [0,0,0] //correct, incorrect, na
   private context: CanvasRenderingContext2D;
   private quizState: any
+  public finished: boolean = false
+  public leave: boolean
 
-  constructor(private qService: QuizService, private renderer: Renderer2, private cd: ChangeDetectorRef) { }
+  constructor(private qService: QuizService, private renderer: Renderer2, private cd: ChangeDetectorRef, public router:Router) { }
+
 
   ngOnInit() { 
+    //Alert user before leaving quiz
+    this.router.events.subscribe(event =>
+      {
+      if(event instanceof NavigationStart && this.router.url =="/exercises"){
+        if(this.leave==null){ //pop-up has not been shown yet
+          if(this.finished || (this.chartData[2]==25)){ 
+          console.log("canDeactivate"); 
+          this.leave=true;
+          }
+        
+       else{
+         this.leave =window.confirm('Do you really want to leave? Your scores will only be saved once you answer all questions.')
+         console.log("leave: ",this.leave)
+        }
+      }else{this.leave=true;}}
+      
+    })
+
     //If quiz has been done before => display message
     if(!localStorage.getItem('quiz')){}
 
@@ -45,7 +67,7 @@ export class ExercisesComponent implements OnInit {
 
           this.renderer.appendChild(btn, btnTxt)
           this.answer = element
-          console.log(this.answer.option);
+          //console.log(this.answer.option);
           
           this.cAns[this.answer.question.questionId] = this.answer.option
 
@@ -63,7 +85,7 @@ export class ExercisesComponent implements OnInit {
           var rb = this.renderer.createElement('input')
           this.quiz.nativeElement
 
-          console.log(this.answer.question.options)
+          //console.log(this.answer.question.options)
           var temp = JSON.parse(this.answer.question.options)
 
           for (var i in temp){
@@ -105,6 +127,7 @@ export class ExercisesComponent implements OnInit {
       })
 
   }
+
 
   onCheck(id: number){
 
@@ -160,6 +183,7 @@ export class ExercisesComponent implements OnInit {
 
       console.log("Finished quiz, result: ",calculatedRes)
       alert("Quiz finished! +100pts")
+      this.finished = true;
       if(!localStorage.getItem('quiz')){
         this.qService.saveQuiz(Number(localStorage.getItem("uid")))
         .subscribe(data =>  {
@@ -171,7 +195,6 @@ export class ExercisesComponent implements OnInit {
         });
         this.qService.saveQuizResult(Number(localStorage.getItem("uid")), calculatedRes).subscribe()
       }else{
-        //TODO: write update method
         this.qService.updateQuizResult(Number(localStorage.getItem("uid")), calculatedRes).subscribe()
       }
     }

@@ -27,6 +27,7 @@ import { Tutorial } from './tutorial';
 import { ExercisesComponent } from './exercises/exercises.component';
 import {AngularStickyThingsModule} from '@w11k/angular-sticky-things';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { AlertGuard } from './exercises/alertGuard';
 
 //The UI components are declarations
 @NgModule({
@@ -69,7 +70,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     AngularFontAwesomeModule
   ],
   //the service glue is a provider
-  providers: [AuthGuardService],
+  providers: [AuthGuardService, AlertGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
