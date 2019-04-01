@@ -28,7 +28,6 @@ export class UserService {
 
   //User Authentication ---------------------------------------------------------
   //With JWT
-  //TODO: check for password as well! (RS256)
   checkUser(uname: string, psw: string): Observable<any>  {
     return this.http.post<{access_token: string}>('//localhost:8080/find', JSON.stringify({username:uname, password:psw}), this.httpOptions)
       .pipe(tap(result => {
