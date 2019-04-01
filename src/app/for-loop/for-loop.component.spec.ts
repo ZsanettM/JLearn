@@ -5,6 +5,7 @@ import { MatExpansionModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 describe('ForLoopComponent', () => {
   let component: ForLoopComponent;
@@ -13,7 +14,7 @@ describe('ForLoopComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ForLoopComponent ],
-      imports: [MatExpansionModule, FormsModule, HttpClientModule, BrowserAnimationsModule]
+      imports: [MatExpansionModule, FormsModule, HttpClientModule, BrowserAnimationsModule, AngularFontAwesomeModule]
     })
     .compileComponents();
   }));

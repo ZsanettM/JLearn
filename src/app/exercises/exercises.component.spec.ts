@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ExercisesComponent } from './exercises.component';
 import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 describe('ExercisesComponent', () => {
   let component: ExercisesComponent;
@@ -11,7 +12,7 @@ describe('ExercisesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ExercisesComponent ],
-      imports: [AngularStickyThingsModule, HttpClientModule]
+      imports: [AngularStickyThingsModule, HttpClientModule, RouterModule.forRoot([])]
     })
     .compileComponents();
   }));
